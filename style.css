@@ -12,7 +12,7 @@ body {
 /*intro*/
 
 .name {
-  border-radius: 25px;
+    border-radius: 25px;
     border-color: light-grey;
     display: bottom-middle;
     position: absolute;
