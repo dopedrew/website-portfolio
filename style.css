@@ -89,11 +89,11 @@ button:hover, a:hover {
 
 /*Projects*/
 div.gallery {
-  border: 1px solid #ccc;
+  border: 0px solid #ccc;
 }
 
 div.gallery:hover {
-  border: 1px solid #777;
+  border: 0px solid #777;
 }
 
 div.gallery img {
@@ -107,9 +107,9 @@ div.desc {
   text-align: center;
 }
 
-* {
+/* {
   box-sizing: border-box;
-}
+} */
 
 .responsive {
   padding: 0 6px;
