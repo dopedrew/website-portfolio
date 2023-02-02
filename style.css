@@ -108,9 +108,9 @@ div.desc {
   text-align: center;
 }
 
-/* {
+* {
   box-sizing: border-box;
-} */
+} 
 
 .responsive {
   padding: 0 6px;
