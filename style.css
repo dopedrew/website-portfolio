@@ -97,6 +97,7 @@ div.gallery:hover {
 }
 
 div.gallery img {
+  border-radius: 25px;
   width: 100%;
   height: auto;
 }
