@@ -22,6 +22,7 @@ body {
 }
 
 .intro {
+    border-radius: 25px;
     content: center;
     display: container;
     position: relative;
