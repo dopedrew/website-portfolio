@@ -78,6 +78,11 @@ button {
   font-size: 18px;
 }
 
+
+.h3 {
+  padding-left: 25px;
+}
+
 a {
   text-decoration: none;
   font-size: 22px;
