@@ -54,6 +54,7 @@ body {
   margin: auto;
   text-align: center;
   border-radius: 25px;
+  z-index: -5;
 }
 
 .title {
