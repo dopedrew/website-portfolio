@@ -28,6 +28,8 @@ body {
     content: center;
     display: container;
     position: relative;
+    padding-left: 25px;
+    padding-right: 25px;
 }
     
 
