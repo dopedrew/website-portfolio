@@ -164,7 +164,9 @@ div.desc {
 
 
 /*Copyright*/
-
+@media screen {
+  
+}
 .copyright {
     color: black;
  }
