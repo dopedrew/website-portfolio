@@ -156,6 +156,10 @@ div.desc {
   /*padding: 25px;*/
 }
 
+.li {
+  padding-left: 10;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
