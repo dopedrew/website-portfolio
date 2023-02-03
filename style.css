@@ -24,12 +24,12 @@ body {
 }
 
 .intro {
-    border-radius: 25px;
     content: center;
     display: container;
     position: relative;
     padding-left: 25px;
     padding-right: 25px;
+    border-radius: 25px;
 }
     
 
@@ -119,7 +119,7 @@ div.desc {
 } 
 
 .responsive {
-  padding: 0 6px;
+  padding: 0 25px;
   float: left;
   width: 24.99999%;
 }
@@ -148,7 +148,7 @@ div.desc {
 .column {
   float: left;
   width: 33.33%;
-  padding: 15px;
+  padding: 25px;
 }
 
 /* Clear floats after the columns */
@@ -173,4 +173,6 @@ div.desc {
 }
 .copyright {
     color: black;
+    padding-bottom: 25px;
+    padding-left: 25px;
  }
