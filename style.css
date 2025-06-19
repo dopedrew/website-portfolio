@@ -1,184 +1,186 @@
-
+/* Reset and Base */
 * {
-    margin:0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
 }
 
-
-/*intro*/
-
+/* Intro Section */
 .name {
-    border-radius: 25px;
-    border-color: light-grey;
-    display: bottom-middle;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding-left: 25px;
-    padding-right: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 40px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .intro {
-    content: center;
-    display: container;
-    position: relative;
-    padding-left: 25px;
-    padding-right: 25px;
-    border-radius: 25px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
 }
-    
 
+/* Modern Flexbox Layout */
 .box {
-    display: flex;
-    color: white;
-    width: 80%;
-    margin-top: 200px;
-    font-size: 40px;
-    margin-left: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 100px auto;
+  font-size: 2rem;
+  width: 80%;
+  color: #333;
 }
 
 .text {
-    color: rgb(255, 255, 255);
+  color: #555;
 }
 
 .title {
-    content: center;
-    position: relative;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-/*Profile card*/
+/* Profile Card */
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
-  margin: auto;
+  margin: 2rem auto;
+  padding: 20px;
   text-align: center;
   border-radius: 25px;
+  background-color: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  color: grey;
+.card .title {
+  color: #777;
   font-size: 18px;
+  margin: 10px 0;
 }
 
 button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
+  padding: 10px;
   width: 100%;
-  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #111;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-
-.w3-center {
-  padding-left: 25px;
+button:hover {
+  background-color: #444;
 }
 
 a {
   text-decoration: none;
-  font-size: 22px;
-  color: black;
+  font-size: 18px;
+  color: #0077cc;
+  transition: 0.3s;
 }
 
-button:hover, a:hover {
-  opacity: 0.7;
+a:hover {
+  color: #005999;
 }
 
-/*AboutMe*/
+/* Image */
 .myimage {
-    border-radius: 50%;
+  border-radius: 50%;
+  max-width: 150px;
+  margin: 1rem auto;
 }
 
-/*Projects*/
+/* Project Gallery */
 div.gallery {
-  border: 0px solid #ccc;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 div.gallery:hover {
-  border: 0px solid #777;
+  transform: scale(1.02);
 }
 
 div.gallery img {
-  border-radius: 25px;
   width: 100%;
   height: auto;
+  border-radius: 20px;
 }
 
 div.desc {
-  border-radius: 25px;
   padding: 15px;
   text-align: center;
+  background-color: white;
+  border-radius: 0 0 20px 20px;
 }
 
-* {
-  box-sizing: border-box;
-} 
-
+/* Responsive Grid */
 .responsive {
-  padding: 0 25px;
+  padding: 15px;
+  width: 25%;
   float: left;
-  width: 24.99999%;
 }
 
-@media only screen and (max-width: 700px) {
+@media (max-width: 768px) {
   .responsive {
-    width: 49.99999%;
-    margin: 6px 0;
+    width: 50%;
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media (max-width: 500px) {
   .responsive {
     width: 100%;
   }
 }
 
-.clearfix:after {
+.clearfix::after {
   content: "";
   display: table;
   clear: both;
 }
 
-
-/*RESUME*/
+/* Resume Columns */
 .column {
   float: left;
   width: 33.33%;
-  /*padding: 25px;*/
+  padding: 15px;
 }
 
-/* Clear floats after the columns */
-.row:after {
+.row::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width:600px) {
+@media (max-width: 600px) {
   .column {
     width: 100%;
-    padding-left: 25px;
   }
 }
 
-
-
-/*Copyright*/
-@media screen {
-  
-}
+/* Footer */
 .copyright {
-    color: black;
-    padding-bottom: 25px;
-    padding-left: 10px;
- }
+  color: #666;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
