@@ -7,6 +7,31 @@
   <title>Andrew Hogan</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <style>
+    .tab-buttons {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .tab-buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background-color: #eee;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    $1
+  border-bottom: 3px solid #fff;
+  box-shadow: inset 0 -3px 0 0 #fff;
+}
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -66,32 +91,35 @@
   <!-- Certifications Section -->
   <h4 class="cert-header">Certifications</h4>
 
-  <h5 style="text-align:center;">ISC2</h5>
-  <section class="certifications">
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/a6d699e8-9f35-4cf6-bd5f-225954ef99bf/public_url" target="_blank"><img src="/images/cissp.png" alt="CISSP" /></a><div class="desc">CISSP</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/f5befd6b-d736-498d-850f-73e32060c415/public_url" target="_blank"><img src="/images/cc.png" alt="Certified in Cybersecurity" /></a><div class="desc">Certified in Cybersecurity (CC)</div></div></div>
+  <div class="tab-buttons">
+    <button onclick="openTab('isc2')" class="active">ISC2</button>
+    <button onclick="openTab('comptia')">CompTIA</button>
+    <button onclick="openTab('microsoft')">Microsoft</button>
+    <button onclick="openTab('lpi')">LPI</button>
+  </div>
+
+  <section id="isc2" class="certifications tab-content active">
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/a6d699e8-9f35-4cf6-bd5f-225954ef99bf/public_url" target="_blank"><img src="/images/cissp.png" alt="CISSP" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">CISSP</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/f5befd6b-d736-498d-850f-73e32060c415/public_url" target="_blank"><img src="/images/cc.png" alt="Certified in Cybersecurity" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">Certified in Cybersecurity (CC)</div></div></div>
   </section>
 
-  <h5 style="text-align:center;">CompTIA</h5>
-  <section class="certifications">
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/639826a7-2736-4adc-b1aa-d2a258d6b916/public_url" target="_blank"><img src="/images/secx.png" alt="SecurityX" /></a><div class="desc">SecurityX</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/73dc3589-bdb5-4165-907d-1a41cd10523b/public_url" target="_blank"><img src="/images/CompTIA_PenTest_2B.png" alt="PenTest+" /></a><div class="desc">PenTest+</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/00de0291-5ab5-4825-ae1b-8fcf9e0ba4a7/public_url" target="_blank"><img src="/images/cysa_plus.png" alt="CySA+" /></a><div class="desc">CySA+</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/441fc954-89f3-4e85-be98-fe8a3d9bcd47/public_url" target="_blank"><img src="/images/sec_plus.png" alt="Security+" /></a><div class="desc">Security+</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/f79c0968-3fcc-4dcf-86e9-17e9a3048487/public_url" target="_blank"><img src="/images/net_plus.png" alt="Network+" /></a><div class="desc">Network+</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/e623c8b8-574f-4a90-87c5-f815487505ce/public_url" target="_blank"><img src="/images/a_plus.png" alt="A+" /></a><div class="desc">A+</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/90feaf08-33ec-4c70-962a-1955c32e058b/public_url" target="_blank"><img src="/images/CompTIA_Project_2B.png" alt="Project+" /></a><div class="desc">Project+</div></div></div>
+  <section id="comptia" class="certifications tab-content">
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/639826a7-2736-4adc-b1aa-d2a258d6b916/public_url" target="_blank"><img src="/images/secx.png" alt="SecurityX" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">SecurityX</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/73dc3589-bdb5-4165-907d-1a41cd10523b/public_url" target="_blank"><img src="/images/CompTIA_PenTest_2B.png" alt="PenTest+" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">PenTest+</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/00de0291-5ab5-4825-ae1b-8fcf9e0ba4a7/public_url" target="_blank"><img src="/images/cysa_plus.png" alt="CySA+" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">CySA+</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/441fc954-89f3-4e85-be98-fe8a3d9bcd47/public_url" target="_blank"><img src="/images/sec_plus.png" alt="Security+" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">Security+</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/f79c0968-3fcc-4dcf-86e9-17e9a3048487/public_url" target="_blank"><img src="/images/net_plus.png" alt="Network+" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">Network+</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/e623c8b8-574f-4a90-87c5-f815487505ce/public_url" target="_blank"><img src="/images/a_plus.png" alt="A+" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">A+</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://www.credly.com/badges/90feaf08-33ec-4c70-962a-1955c32e058b/public_url" target="_blank"><img src="/images/CompTIA_Project_2B.png" alt="Project+" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">Project+</div></div></div>
   </section>
 
-  <h5 style="text-align:center;">Microsoft</h5>
-  <section class="certifications">
-    <div class="responsive"><div class="gallery"><a href="https://learn.microsoft.com/api/credentials/share/en-us/AndrewHogan-1915/432D4E01F82D0F27?sharingId=71C30C5F22C322F8" target="_blank"><img src="/images/az-900.png" alt="AZ-900" /></a><div class="desc">AZ-900</div></div></div>
-    <div class="responsive"><div class="gallery"><a href="https://learn.microsoft.com/api/credentials/share/en-us/AndrewHogan-1915/35DADF1BC7C9AB9?sharingId=71C30C5F22C322F8" target="_blank"><img src="/images/sc-900.png" alt="SC-900" /></a><div class="desc">SC-900</div></div></div>
+  <section id="microsoft" class="certifications tab-content">
+    <div class="responsive"><div class="gallery"><a href="https://learn.microsoft.com/api/credentials/share/en-us/AndrewHogan-1915/432D4E01F82D0F27?sharingId=71C30C5F22C322F8" target="_blank"><img src="/images/az-900.png" alt="AZ-900" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">AZ-900</div></div></div>
+    <div class="responsive"><div class="gallery"><a href="https://learn.microsoft.com/api/credentials/share/en-us/AndrewHogan-1915/35DADF1BC7C9AB9?sharingId=71C30C5F22C322F8" target="_blank"><img src="/images/sc-900.png" alt="SC-900" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">SC-900</div></div></div>
   </section>
 
-  <h5 style="text-align:center;">Linux Professional Institute</h5>
-  <section class="certifications">
-    <div class="responsive"><div class="gallery"><a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000522092/566sugru5t" target="_blank"><img src="/images/LPI_Essentials.png" alt="Linux Essentials" /></a><div class="desc">Linux Essentials</div></div></div>
+  <section id="lpi" class="certifications tab-content">
+    <div class="responsive"><div class="gallery"><a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000522092/566sugru5t" target="_blank"><img src="/images/LPI_Essentials.png" alt="Linux Essentials" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">Linux Essentials</div></div></div>
   </section>
 
   <div class="clearfix"></div>
@@ -101,5 +129,15 @@
     <p>Website built by Andrew Hogan. Images by Andrew Hogan.</p>
   </footer>
 
+  <script>
+    function openTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-buttons button');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
 </body>
 </html>
