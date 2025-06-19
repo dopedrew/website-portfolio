@@ -1,4 +1,4 @@
-/* Reset and Base */
+/* Reset & Base */
 * {
   margin: 0;
   padding: 0;
@@ -12,50 +12,27 @@ body {
   line-height: 1.6;
 }
 
-/* Intro Section */
+/* Intro */
+.intro {
+  position: relative;
+  text-align: center;
+}
+
+.intro-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
 .name {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 20px 40px;
   background-color: white;
-  border: 1px solid #ccc;
+  padding: 20px 40px;
   border-radius: 25px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.intro {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: auto;
-  text-align: center;
-}
-
-/* Modern Flexbox Layout */
-.box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 100px auto;
-  font-size: 2rem;
-  width: 80%;
-  color: #333;
-}
-
-.text {
-  color: #555;
-}
-
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
 }
 
 /* Profile Card */
@@ -64,85 +41,154 @@ body {
   margin: 2rem auto;
   padding: 20px;
   text-align: center;
+  background-color: white;
   border-radius: 25px;
-  background-color: #fff;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
 }
 
-.card .title {
+.card img {
+  border-radius: 20px;
+}
+
+.title {
   color: #777;
   font-size: 18px;
   margin: 10px 0;
 }
 
-button {
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  background-color: #111;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s ease;
+.social-links a {
+  margin: 0 10px;
+  font-size: 20px;
+  color: #333;
 }
 
-button:hover {
-  background-color: #444;
-}
-
-a {
-  text-decoration: none;
-  font-size: 18px;
+.social-links a:hover {
   color: #0077cc;
-  transition: 0.3s;
 }
 
-a:hover {
-  color: #005999;
-}
-
-/* Image */
-.myimage {
-  border-radius: 50%;
-  max-width: 150px;
-  margin: 1rem auto;
-}
-
-/* Project Gallery */
-div.gallery {
-  border-radius: 20px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-div.gallery:hover {
-  transform: scale(1.02);
-}
-
-div.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-}
-
-div.desc {
-  padding: 15px;
+/* About */
+.about {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 20px;
   text-align: center;
-  background-color: white;
-  border-radius: 0 0 20px 20px;
 }
 
-/* Responsive Grid */
+/* Skills */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2rem 0;
+  padding: 0 20px;
+}
+
+.column {
+  flex: 1 1 250px;
+  padding: 20px;
+}
+
+.column ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.column li {
+  padding: 5px 0;
+}
+
+/* Certification Tabs */
+.tab-buttons {
+  text-align: center;
+  margin: 30px 0 10px;
+}
+
+.tab-buttons button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.tab-buttons button.active {
+  background-color: #333;
+  color: #fff;
+  border-bottom: 3px solid #fff;
+  box-shadow: inset 0 -3px 0 0 #fff;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Certifications Gallery */
+.cert-header {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 .responsive {
-  padding: 15px;
-  width: 25%;
+  padding: 0 15px;
   float: left;
+  width: 25%;
+  box-sizing: border-box;
 }
 
+.gallery {
+  margin: 15px 0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.gallery:hover {
+  transform: scale(1.03);
+}
+
+.gallery img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+}
+
+.desc {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Footer */
+.copyright {
+  background-color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
+  border-top: 1px solid #eee;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .responsive {
     width: 50%;
+  }
+
+  .name {
+    padding: 15px;
+    font-size: 1.2rem;
   }
 }
 
@@ -150,37 +196,15 @@ div.desc {
   .responsive {
     width: 100%;
   }
-}
 
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Resume Columns */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 15px;
-}
-
-.row::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-@media (max-width: 600px) {
-  .column {
-    width: 100%;
+  .row {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
-/* Footer */
-.copyright {
-  color: #666;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
