@@ -1,0 +1,29 @@
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.skill-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.skill-box h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.skill-box ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.skill-box li {
+  margin-bottom: 0.5rem;
+}
