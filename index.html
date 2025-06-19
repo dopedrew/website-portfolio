@@ -8,8 +8,35 @@
   
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<style>
+  body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+  }
+  body.dark-mode .card,
+  body.dark-mode .skill-box,
+  body.dark-mode .gallery,
+  body.dark-mode .tab-buttons button.active {
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+  .dark-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+</style>
+</head>
 
 <body>
+  <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
   <!-- Intro Section -->
   <header class="intro">
@@ -69,10 +96,11 @@
   <!-- Certifications Tabs -->
   <h4 class="cert-header">Certifications</h4>
   <div class="tab-buttons">
-    <button onclick="openTab(event, 'isc2')" class="active">ISC2</button>
+    <button onclick="openTab(event, 'isc2')">ISC2</button>
     <button onclick="openTab(event, 'comptia')">CompTIA</button>
     <button onclick="openTab(event, 'microsoft')">Microsoft</button>
     <button onclick="openTab(event, 'lpi')">LPI</button>
+    <button onclick="openTab(event, 'peoplecert')">PeopleCert</button>
   </div>
 
   <!-- Tab Content -->
@@ -97,10 +125,13 @@
   <section id="lpi" class="certifications tab-content">
     <div class="responsive"><div class="gallery"><a href="https://cs.lpi.org/caf/Xamman/certification/verify/LPI000522092/566sugru5t" target="_blank"><img src="/images/LPI_Essentials.png" alt="Linux Essentials" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">Linux Essentials</div></div></div>
   </section>
+  <section id="peoplecert" class="certifications tab-content">
+    <div class="responsive"><div class="gallery"><a href="#" target="_blank"><img src="/images/itil.png" alt="ITIL 4 Foundation" style="width: 100%; height: 150px; object-fit: contain;" /></a><div class="desc">ITIL® 4 Foundation Certificate in IT Service Management</div></div></div>
+  </section>
 
-  <div class="clearfix"></div>
+  
 
-  <!-- Footer -->
+<!-- Footer -->
   <footer class="copyright">
     <p>Website built by Andrew Hogan. Images by Andrew Hogan.</p>
   </footer>
@@ -115,5 +146,10 @@
       evt.target.classList.add('active');
     }
   </script>
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+</script>
 </body>
 </html>
