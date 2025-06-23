@@ -66,10 +66,10 @@ body.dark-mode .tab-buttons button.active {
   padding: 10px;
 }
 
-.title {
+/*.title {
   color: grey;
   font-size: 18px;
-}
+} */
 
 .social-links a {
   margin: 0 10px;
@@ -78,9 +78,9 @@ body.dark-mode .tab-buttons button.active {
   text-decoration: none;
 }
 
-.social-links a:hover {
+/* .social-links a:hover {
   opacity: 0.7;
-}
+} */
 
 /* About Section */
 .about {
