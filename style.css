@@ -364,13 +364,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 20px 16px;
+  padding: 24px 20px;
   text-decoration: none;
-  width: 130px;
+  width: 160px;
   transition: border-color .2s, transform .2s, background .2s;
 }
 .cert-card:hover {
@@ -379,8 +379,8 @@ body {
   transform: translateY(-3px);
 }
 .cert-card img {
-  width: 72px;
-  height: 72px;
+  width: 110px;
+  height: 110px;
   object-fit: contain;
 }
 .cert-card span {
@@ -453,6 +453,6 @@ footer p { color: var(--muted); font-size: 13px; }
   .nav-links { display: none; }
   .btn-nav-resume { margin-left: auto; }
   .about-stats { gap: 20px; }
-  .cert-card { width: 110px; }
+  .cert-card { width: 140px; }
   .contact-card { padding: 20px 24px; min-width: 100px; }
 }
