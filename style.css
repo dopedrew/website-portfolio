@@ -553,6 +553,11 @@ footer p { color: var(--muted); font-size: 13px; }
   color: #6ee7b7;
   border-color: rgba(52,211,153,.3);
 }
+.tl-badge.military {
+  background: rgba(251,191,36,.10);
+  color: #fbbf24;
+  border-color: rgba(251,191,36,.3);
+}
 .tl-bullets {
   margin: 0 0 12px 0;
   padding-left: 18px;
