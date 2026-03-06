@@ -456,3 +456,131 @@ footer p { color: var(--muted); font-size: 13px; }
   .cert-card { width: 140px; }
   .contact-card { padding: 20px 24px; min-width: 100px; }
 }
+
+/* ── Work Experience Timeline ──────────────────────────────────────────── */
+.timeline {
+  position: relative;
+  padding: 8px 0;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2), rgba(255,255,255,.08));
+  border-radius: 2px;
+}
+.tl-item {
+  position: relative;
+  padding-left: 52px;
+  margin-bottom: 32px;
+}
+.tl-dot {
+  position: absolute;
+  left: 8px;
+  top: 18px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-alt);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.25);
+  z-index: 1;
+}
+.tl-dot-muted {
+  background: var(--muted);
+  box-shadow: 0 0 0 3px rgba(100,116,139,.2);
+}
+.tl-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color .2s, transform .2s;
+}
+.tl-card:hover {
+  border-color: rgba(59,130,246,.35);
+  transform: translateY(-2px);
+}
+.tl-card-muted { opacity: .7; }
+.tl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.tl-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.tl-company {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.tl-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.tl-date {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+.tl-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(59,130,246,.15);
+  color: #93c5fd;
+  border: 1px solid rgba(59,130,246,.3);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.tl-badge.current {
+  background: rgba(52,211,153,.12);
+  color: #6ee7b7;
+  border-color: rgba(52,211,153,.3);
+}
+.tl-bullets {
+  margin: 0 0 12px 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.tl-bullets li {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.tl-tags span {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.05);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+@media (max-width: 640px) {
+  .tl-header { flex-direction: column; }
+  .tl-meta { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+}
