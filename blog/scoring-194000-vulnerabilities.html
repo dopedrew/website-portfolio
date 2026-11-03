@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CVSS tells you how bad a vulnerability could be in theory. It does not tell you how likely anyone is to actually use it against you. Those are different questions, and conflating them is how security…" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0a0f1a" />
+  <meta property="og:title" content="Scoring 194,000 Vulnerabilities by What Actually Matters" />
+  <meta property="og:description" content="CVSS tells you how bad a vulnerability could be in theory. It does not tell you how likely anyone is to actually use it against you. Those are different questions, and conflating them is how security…" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/scoring-194000-vulnerabilities.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Scoring 194,000 Vulnerabilities by What Actually Matters — Andrew Hogan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
+      <div class="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Writing</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <article class="section post-page">
+    <div class="container narrow">
+      <a class="post-back" href="/blog/">&larr; All writing</a>
+      <div class="post-kicker">Building a CTI Platform From Scratch (3 of 10)</div>
+      <h1 class="post-h1">Scoring 194,000 Vulnerabilities by What Actually Matters</h1>
+      <img class="post-cover" src="/images/blog/scoring-194000-vulnerabilities.png" alt="" />
+      <div class="post-body">
+      <p class="post-lede">CVSS tells you how bad a vulnerability could be in theory. It does not tell you how likely anyone is to actually use it against you. Those are different questions, and conflating them is how security teams end up patching a 9.8 that nobody has ever exploited while a 7.1 with active exploitation sits in the backlog.</p>
+      <p>The platform scores every vulnerability it tracks on two things CVSS does not capture: EPSS, the Exploit Prediction Scoring System, which estimates the probability a CVE will be exploited in the next 30 days based on observed attacker behavior, and exploit availability, whether a working public proof of concept actually exists. 183,000 of the 194,000 vulnerabilities in the database carry an EPSS score. That is the layer that turns a flat list of CVEs into something you can actually triage.</p>
+      <p>The pattern that shows up constantly once you have both numbers side by side: a CVE can be in CISA&#x27;s KEV catalog, meaning it is confirmed exploited in the wild, and still score low on EPSS if the exploitation has been narrow or has slowed down. Another CVE can have no confirmed exploitation at all and still sit at the 90th percentile on EPSS because the conditions that predict exploitation are all present, a public PoC, a widely deployed product, a vendor patch that reverse engineers cleanly into an exploit. Neither number alone tells the full story. Together they do.</p>
+      <p>I learned to be skeptical of PoC counts specifically. A public proof of concept existing does not mean it works. I have pulled research writeups where the vendor&#x27;s own security team confirmed the published PoCs for a CVE did not function, and independent researchers found them unreliable and dependent on configurations nobody runs in production. Counting PoCs as a signal of real risk without checking whether they actually work is a trap, and it is an easy one to fall into when you are trying to move fast.</p>
+      <p>The scoring layer is not trying to replace judgment. It is trying to make sure judgment gets applied to the right ten vulnerabilities out of ten thousand, instead of getting spent evenly across all of them or not spent at all.</p>
+      <p>Next: scores do not mean anything without context, how the platform maps every CVE back to the attacker behavior and weakness class behind it.</p>
+      </div>
+      <div class="post-nav"><a class="post-nav-link" href="/blog/ingesting-24-feeds-without-duplicate-data.html"><span>Previous</span>Ingesting 24 Feeds Without Drowning in Duplicate Data</a></div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="nav-logo">AH<span class="accent">.</span></span>
+      <p>&copy; 2026 Andrew Hogan &middot; Built with intention.</p>
+    </div>
+  </footer>
+</body>
+</html>

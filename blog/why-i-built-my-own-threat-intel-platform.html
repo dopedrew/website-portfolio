@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Every commercial threat intel feed I have used shares the same flaw: it tells you a CVE exists, not whether it matters to you. You get a CVSS score, a vendor advisory, maybe an EPSS number if you pay…" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0a0f1a" />
+  <meta property="og:title" content="Why I Built My Own Threat Intel Platform Instead of Paying for One" />
+  <meta property="og:description" content="Every commercial threat intel feed I have used shares the same flaw: it tells you a CVE exists, not whether it matters to you. You get a CVSS score, a vendor advisory, maybe an EPSS number if you pay…" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/why-i-built-my-own-threat-intel-platform.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Why I Built My Own Threat Intel Platform Instead of Paying for One — Andrew Hogan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
+      <div class="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Writing</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <article class="section post-page">
+    <div class="container narrow">
+      <a class="post-back" href="/blog/">&larr; All writing</a>
+      <div class="post-kicker">Building a CTI Platform From Scratch (1 of 10)</div>
+      <h1 class="post-h1">Why I Built My Own Threat Intel Platform Instead of Paying for One</h1>
+      <img class="post-cover" src="/images/blog/why-i-built-my-own-threat-intel-platform.png" alt="" />
+      <div class="post-body">
+      <p class="post-lede">Every commercial threat intel feed I have used shares the same flaw: it tells you a CVE exists, not whether it matters to you. You get a CVSS score, a vendor advisory, maybe an EPSS number if you pay for the tier that includes it, and then the real work starts somewhere else, in a spreadsheet, in a ticket, in someone&#x27;s head.</p>
+      <p>I wanted a system that collapsed that gap. Something that pulled from the same raw sources the commercial platforms pull from, CISA KEV, VulnCheck, NVD, GitHub Advisories, abuse.ch&#x27;s malware and botnet feeds, OSV, and then did the part that actually takes judgment: is this exploited, is this on something I run, and has anyone told me about it yet.</p>
+      <p>So I built one. It now tracks 194,000 vulnerabilities, 183,000 of them with an EPSS score attached, and matches them against a small set of assets I actually watch. It is not trying to compete with Recorded Future or Mandiant Advantage. It is trying to answer one question fast: out of everything that happened in security today, what should I actually look at.</p>
+      <p>The honest reason I built it myself instead of buying one: the interesting part of threat intel is not the data, it is the judgment layer on top of the data, and that layer only gets good when you are the one who has to live with its false positives. A vendor tunes their alerting for a thousand customers. I only have to tune mine for me, which means I can afford to be aggressive about cutting noise in a way a platform selling to an enterprise SOC cannot.</p>
+      <p>This series is the build log. Ingestion, scoring, enrichment, asset matching, the alert engine, a real gap I found between CISA&#x27;s KEV catalog and VulnCheck&#x27;s, an attack map built from my own honeypot traffic, SBOM import, and what a year of running this in production actually taught me. All of it running on hardware in my own house, mostly in Python, feeding a PostgreSQL database nobody else has access to.</p>
+      </div>
+      <div class="post-nav"><a class="post-nav-link next" href="/blog/ingesting-24-feeds-without-duplicate-data.html"><span>Next</span>Ingesting 24 Feeds Without Drowning in Duplicate Data</a></div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="nav-logo">AH<span class="accent">.</span></span>
+      <p>&copy; 2026 Andrew Hogan &middot; Built with intention.</p>
+    </div>
+  </footer>
+</body>
+</html>

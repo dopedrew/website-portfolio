@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The platform runs 24 separate ingestion jobs on their own schedules, CISA KEV, VulnCheck KEV, NVD, GitHub Advisories, ThreatFox, MalwareBazaar, URLhaus, SSLBL, Spamhaus, OTX, EPSS, CWE mappings,…" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0a0f1a" />
+  <meta property="og:title" content="Ingesting 24 Feeds Without Drowning in Duplicate Data" />
+  <meta property="og:description" content="The platform runs 24 separate ingestion jobs on their own schedules, CISA KEV, VulnCheck KEV, NVD, GitHub Advisories, ThreatFox, MalwareBazaar, URLhaus, SSLBL, Spamhaus, OTX, EPSS, CWE mappings,…" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/ingesting-24-feeds-without-duplicate-data.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Ingesting 24 Feeds Without Drowning in Duplicate Data — Andrew Hogan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
+      <div class="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Writing</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <article class="section post-page">
+    <div class="container narrow">
+      <a class="post-back" href="/blog/">&larr; All writing</a>
+      <div class="post-kicker">Building a CTI Platform From Scratch (2 of 10)</div>
+      <h1 class="post-h1">Ingesting 24 Feeds Without Drowning in Duplicate Data</h1>
+      <img class="post-cover" src="/images/blog/ingesting-24-feeds-without-duplicate-data.png" alt="" />
+      <div class="post-body">
+      <p class="post-lede">The platform runs 24 separate ingestion jobs on their own schedules, CISA KEV, VulnCheck KEV, NVD, GitHub Advisories, ThreatFox, MalwareBazaar, URLhaus, SSLBL, Spamhaus, OTX, EPSS, CWE mappings, Sigma rules, HIBP exposure checks, passive DNS, honeypot hits, and a handful of security news RSS feeds. Most of them write into their own table. The ones that overlap are where it gets interesting.</p>
+      <p>CISA&#x27;s Known Exploited Vulnerabilities catalog is the clearest example. I had five different pieces of code that each touch KEV data: one pulls the raw CISA catalog, one enriches entries with MITRE ATT&amp;CK mappings, one cross-references VulnCheck&#x27;s broader exploited-vulnerability list, one does CVSS backfill, one tracks how fast new entries get added. Each one was writing rows into the same vulnerabilities table, and each one, independently, decided to label its own rows with a slightly different source string. CISA KEV. cisa-kev. kev. VulnCheck-KEV. A fifth variant in mixed case from an older version of the code that never got cleaned up.</p>
+      <p>Nobody designed that on purpose. It happened the way most data fragmentation happens, five scripts written at five different times, each one reasonable on its own, none of them aware the other four existed.</p>
+      <p>The cost was not obvious until I built a freshness dashboard to tell me when a feed had gone stale. The dashboard grouped rows by source and checked how recently each group had been updated. Because CISA only adds a handful of new KEV entries most weeks, whichever of the five scripts happened to insert a given CVE first got credit for being fresh, and the other four looked permanently dead. I had a monitoring system that was technically correct and completely misleading, flagging four healthy pipelines as broken because they were splitting credit for the same handful of CVEs.</p>
+      <p>The fix was not touching five scripts across two hosts. It was collapsing the labels at query time, one canonical source name for everything that is obviously the same underlying feed, and letting the real ingestion code stay exactly as fragmented as it already was. Sometimes the right fix is not the one that looks most thorough.</p>
+      </div>
+      <div class="post-nav"><a class="post-nav-link" href="/blog/why-i-built-my-own-threat-intel-platform.html"><span>Previous</span>Why I Built My Own Threat Intel Platform Instead of Paying for One</a><a class="post-nav-link next" href="/blog/scoring-194000-vulnerabilities.html"><span>Next</span>Scoring 194,000 Vulnerabilities by What Actually Matters</a></div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="nav-logo">AH<span class="accent">.</span></span>
+      <p>&copy; 2026 Andrew Hogan &middot; Built with intention.</p>
+    </div>
+  </footer>
+</body>
+</html>
