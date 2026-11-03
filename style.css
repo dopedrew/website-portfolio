@@ -853,3 +853,160 @@ footer p { color: var(--muted); font-size: 13px; }
      track width turns 14 tiles into a tidy row rather than a grid block. */
   .cert-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 }
+
+/* ---- Blog (hosted here, not linked out) -------------------------------- */
+
+.post-index .post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid rgba(148, 163, 184, .10);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+
+.post-card:hover { border-color: rgba(59,130,246,.45); transform: translateY(-2px); }
+
+.post-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+
+.post-card-body { padding: 20px 22px 24px; }
+
+.post-card-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.post-card h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.post-card p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+
+/* ---- Single post ------------------------------------------------------- */
+
+.post-page { padding-top: 140px; }
+
+.container.narrow { max-width: 760px; }
+
+.post-back {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .76rem;
+  letter-spacing: .06em;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+
+.post-back:hover { color: var(--accent); }
+
+.post-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.post-h1 {
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  margin-bottom: 30px;
+}
+
+.post-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 38px;
+}
+
+.post-body p {
+  font-size: 1.07rem;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+/* Opening paragraph carries the piece, so it gets the brighter ink. */
+.post-body .post-lede { font-size: 1.2rem; line-height: 1.72; color: var(--text); }
+
+.post-nav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(148, 163, 184, .12);
+}
+
+.post-nav-link {
+  flex: 1 1 240px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid rgba(148, 163, 184, .10);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.4;
+  transition: border-color .2s;
+}
+
+.post-nav-link:hover { border-color: rgba(59,130,246,.45); }
+.post-nav-link.next { text-align: right; }
+
+.post-nav-link span {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .66rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.nav-logo-link { text-decoration: none; }
+
+.writing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 18px;
+}
+
+.writing-item {
+  display: block;
+  padding: 24px 26px;
+  background: var(--surface);
+  border: 1px solid rgba(148, 163, 184, .10);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+
+.writing-item:hover { transform: translateY(-2px); border-color: rgba(59,130,246,.45); border-left-color: var(--accent); }
+.writing-item .writing-title { font-size: 1.08rem; margin-bottom: 8px; }
+.writing-item .writing-dek { font-size: .9rem; margin-bottom: 0; }
+.writing-all { display: inline-block; margin-top: 26px; }
