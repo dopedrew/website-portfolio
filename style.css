@@ -589,3 +589,267 @@ footer p { color: var(--muted); font-size: 13px; }
   .tl-header { flex-direction: column; }
   .tl-meta { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
 }
+
+/* ==========================================================================
+   Redesign: proof of work leads, credentials support
+   ========================================================================== */
+
+.section-lede {
+  max-width: 62ch;
+  margin: -8px 0 48px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ---- Selected Work ---------------------------------------------------- */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* The CTI platform is the strongest piece, so it gets the full width and the
+   metric row. Everything else reads as a supporting card. */
+.work-card--lead { grid-column: 1 / -1; }
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid rgba(148, 163, 184, .10);
+  border-radius: 14px;
+  transition: border-color .2s, transform .2s;
+}
+
+.work-card:hover {
+  border-color: rgba(59, 130, 246, .45);
+  transform: translateY(-2px);
+}
+
+.work-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.work-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.work-card--lead h3 { font-size: 1.6rem; }
+
+.work-card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: .97rem;
+}
+
+.work-status {
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .68rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid rgba(148, 163, 184, .22);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.work-status.live {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, .35);
+  background: rgba(74, 222, 128, .07);
+}
+
+.work-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  list-style: none;
+  margin: 4px 0;
+  padding: 18px 0;
+  border-top: 1px solid rgba(148, 163, 184, .10);
+  border-bottom: 1px solid rgba(148, 163, 184, .10);
+}
+
+.work-metrics li { display: flex; flex-direction: column; gap: 2px; }
+
+.work-metrics strong {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.work-metrics span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.work-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.work-tags span {
+  font-size: .76rem;
+  color: var(--muted);
+  background: rgba(148, 163, 184, .07);
+  border: 1px solid rgba(148, 163, 184, .10);
+  border-radius: 6px;
+  padding: 4px 9px;
+}
+
+.work-link {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap .2s;
+}
+
+.work-link span { display: inline-block; transition: transform .2s; }
+.work-card:hover .work-link span,
+.work-link:hover span { transform: translateX(4px); }
+
+/* ---- Writing ----------------------------------------------------------- */
+
+.writing-card {
+  display: block;
+  max-width: 760px;
+  padding: 30px;
+  background: var(--surface);
+  border: 1px solid rgba(148, 163, 184, .10);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+
+.writing-card:hover { transform: translateY(-2px); }
+
+.writing-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.writing-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.writing-dek {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* ---- Condensed role list ---------------------------------------------- */
+
+.roles { display: flex; flex-direction: column; }
+
+.role {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 28px;
+  padding: 26px 0;
+  border-top: 1px solid rgba(148, 163, 184, .10);
+}
+
+.role:last-child { border-bottom: 1px solid rgba(148, 163, 184, .10); }
+
+.role-when {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .78rem;
+  color: var(--muted);
+  padding-top: 3px;
+}
+
+.role-title { font-size: 1.08rem; font-weight: 700; }
+.role-company { color: var(--accent); font-size: .92rem; margin-top: 2px; }
+
+.role-line {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: .93rem;
+  margin: 10px 0 12px;
+}
+
+.role-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.role-tags span {
+  font-size: .72rem;
+  color: var(--muted);
+  background: rgba(148, 163, 184, .07);
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+
+.roles-more { display: inline-block; margin-top: 28px; }
+
+@media (max-width: 860px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .work-metrics { gap: 24px; }
+  .role { grid-template-columns: 1fr; gap: 10px; }
+  .role-when { flex-direction: row; align-items: center; gap: 12px; }
+}
+
+/* ---- Tighter skills + credentials -------------------------------------
+   These are supporting evidence, not the headline. Shrinking the cards and
+   badges keeps them scannable without letting them dominate the page the
+   way a printed resume would. */
+
+.skills-grid { gap: 16px; }
+
+.skill-card { padding: 20px 22px; }
+
+.skill-card h3 { font-size: 1rem; margin-bottom: 10px; }
+
+.skill-card .skill-icon {
+  width: 32px; height: 32px;
+  font-size: .85rem;
+  margin-bottom: 12px;
+}
+
+.skill-card .tag { font-size: .73rem; padding: 3px 8px; }
+
+.cert-group { margin-bottom: 26px; }
+
+.cert-grid { gap: 10px; }
+
+.cert-card {
+  padding: 12px 10px 10px;
+  border-radius: 10px;
+}
+
+.cert-card img, .cert-card .cert-img { max-height: 54px; }
+
+.cert-card .cert-name { font-size: .68rem; }
+
+@media (min-width: 861px) {
+  /* Credentials read as a dense wall of badges at full size; capping the
+     track width turns 14 tiles into a tidy row rather than a grid block. */
+  .cert-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+}

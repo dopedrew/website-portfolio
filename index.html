@@ -23,10 +23,10 @@
     <div class="nav-inner">
       <span class="nav-logo">AH<span class="accent">.</span></span>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#certifications">Certs</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <a href="https://1drv.ms/b/s!AjUaEY2n6SO7wFvYzGOdHLzm5_Qd?e=etfCqM" target="_blank" class="btn-nav-resume">Resume <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -43,7 +43,7 @@
       <p class="hero-title">Cybersecurity Engineer &amp; U.S. Military Veteran</p>
       <p class="hero-sub">Security Operations Administrator @ Peraton · TS/SCI CI Poly · CISSP · SecurityX+</p>
       <div class="hero-actions">
-        <a href="#about" class="btn-primary">Learn More</a>
+        <a href="#work" class="btn-primary">See the work</a>
         <a href="https://www.linkedin.com/in/andrewghogan/" target="_blank" class="btn-ghost"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
         <a href="https://github.com/dopedrew" target="_blank" class="btn-ghost"><i class="fa-brands fa-github"></i> GitHub</a>
       </div>
@@ -75,167 +75,151 @@
     </div>
   </section>
 
+
+  <!-- SELECTED WORK -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Things I&rsquo;ve built</h2>
+      <p class="section-lede">Security tooling I run in production against my own infrastructure, not coursework.</p>
+
+      <div class="work-grid">
+
+        <article class="work-card work-card--lead fade-in">
+          <div class="work-head">
+            <h3>Threat Intelligence Platform</h3>
+            <span class="work-status live">In production</span>
+          </div>
+          <p>Ingests 24 automated feeds into a single prioritised view: EPSS scoring, exploit
+             availability, MITRE ATT&amp;CK and CWE mapping, SBOM import, and asset matching that
+             answers the only question that matters, is this on something I run.</p>
+          <ul class="work-metrics">
+            <li><strong>194,000</strong><span>vulnerabilities tracked</span></li>
+            <li><strong>24</strong><span>live intel feeds</span></li>
+            <li><strong>5,679</strong><span>priority alerts triaged</span></li>
+          </ul>
+          <div class="work-tags"><span>PostgreSQL</span><span>Python</span><span>React</span><span>EPSS</span><span>MITRE ATT&amp;CK</span></div>
+          <a class="work-link" href="https://c3-security.com/blog" target="_blank" rel="noopener">Read the build log <span aria-hidden="true">&rarr;</span></a>
+        </article>
+
+        <article class="work-card fade-in">
+          <div class="work-head">
+            <h3>SOC Detection Lab</h3>
+            <span class="work-status">Open source</span>
+          </div>
+          <p>An isolated multi-OS lab on Proxmox: Wazuh SIEM, Linux and Windows endpoints, and a
+             dedicated attacker box. Built to prove detections against real attacks rather than
+             simulated logs, with five CVE walkthroughs mapped to ATT&amp;CK and Sigma.</p>
+          <div class="work-tags"><span>Wazuh</span><span>Proxmox</span><span>Sigma</span><span>Detection Engineering</span></div>
+          <a class="work-link" href="https://github.com/dopedrew/soc-homelab" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span></a>
+        </article>
+
+        <article class="work-card fade-in">
+          <div class="work-head">
+            <h3>Fillbook</h3>
+            <span class="work-status live">Live</span>
+          </div>
+          <p>A self-hosted trading journal and analytics platform, FastAPI and Next.js, with
+             broker sync, regime-tagged P&amp;L, and a coaching layer over the trade history.</p>
+          <div class="work-tags"><span>FastAPI</span><span>Next.js</span><span>OIDC</span></div>
+          <a class="work-link" href="https://fillbook.trade" target="_blank" rel="noopener">fillbook.trade <span aria-hidden="true">&rarr;</span></a>
+        </article>
+
+        <article class="work-card fade-in">
+          <div class="work-head">
+            <h3>Native app portfolio</h3>
+            <span class="work-status">9 shipped</span>
+          </div>
+          <p>Nine SwiftUI apps built and shipped through TestFlight, iOS, watchOS and Mac
+             Catalyst, spanning a Tesla dashboard, a running tracker with a Watch companion,
+             an offline study trainer, and a camera monitor driven over USB&nbsp;PTP.</p>
+          <div class="work-tags"><span>SwiftUI</span><span>watchOS</span><span>TestFlight</span><span>App Store Connect API</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section class="section section-alt" id="writing">
+    <div class="container">
+      <div class="section-label">Writing</div>
+      <h2 class="section-title">Field notes</h2>
+      <p class="section-lede">A ten-part build log on the threat intel platform: ingestion, scoring,
+         enrichment, asset matching, and what a year in production actually taught me.</p>
+      <a class="writing-card fade-in" href="https://c3-security.com/blog" target="_blank" rel="noopener">
+        <div class="writing-kicker">Building a CTI Platform From Scratch</div>
+        <div class="writing-title">Why I Built My Own Threat Intel Platform Instead of Paying for One</div>
+        <p class="writing-dek">Every commercial feed tells you a CVE exists, not whether it matters to
+           you. So I built one that answers the second question.</p>
+        <span class="work-link">Read the series <span aria-hidden="true">&rarr;</span></span>
+      </a>
+    </div>
+  </section>
+
   <!-- WORK EXPERIENCE -->
   <section class="section section-alt" id="experience">
     <div class="container">
       <div class="section-label">Career</div>
-      <h2 class="section-title">Work Experience</h2>
-      <div class="timeline">
-
-        <!-- Peraton -->
-        <div class="tl-item fade-in">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div>
-                <div class="tl-title">Security Operations Administrator</div>
-                <div class="tl-company">Peraton</div>
-              </div>
-              <div class="tl-meta">
-                <span class="tl-date">Apr 2025 — Present</span>
-                <span class="tl-badge current">Current</span>
-              </div>
-            </div>
-            <ul class="tl-bullets">
-              <li>Monitor, analyze, and respond to network, infrastructure, and information security incidents, improving handling efficiency and response consistency</li>
-              <li>Engineer continuous monitoring workflows across datacenter, network, and cloud environments aligned to NIST and MITRE ATT&CK frameworks</li>
-              <li>Coordinate incident response and escalation with SOC analysts, Incident Managers, and cross-functional teams to meet contractual SLA requirements</li>
-              <li>Produce operational reports and leadership briefings supporting proactive risk management and cybersecurity compliance obligations</li>
-            </ul>
-            <div class="tl-tags">
-              <span>SOC Operations</span><span>NIST</span><span>MITRE ATT&CK</span><span>Incident Response</span><span>Federal</span><span>TS/SCI</span>
-            </div>
+      <h2 class="section-title">Where I&rsquo;ve done it</h2>
+      <p class="section-lede">Nine years across federal, defense, and commercial security operations.</p>
+      <div class="roles">
+        <div class="role fade-in">
+          <div class="role-when">Apr 2025 — Present<span class="tl-badge current">Current</span></div>
+          <div class="role-what">
+            <div class="role-title">Security Operations Administrator</div>
+            <div class="role-company">Peraton</div>
+            <p class="role-line">Monitor, analyze, and respond to network, infrastructure, and information security incidents, improving handling efficiency and response consistency</p>
+            <div class="role-tags"><span>SOC Operations</span><span>NIST</span><span>MITRE ATT&CK</span></div>
           </div>
         </div>
-
-        <!-- BayForce -->
-        <div class="tl-item fade-in">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div>
-                <div class="tl-title">Information Security Analyst</div>
-                <div class="tl-company">BayForce</div>
-              </div>
-              <div class="tl-meta">
-                <span class="tl-date">Feb 2025 — Jul 2025</span>
-              </div>
-            </div>
-            <ul class="tl-bullets">
-              <li>Assessed and hardened Azure, Microsoft 365 Defender, Proofpoint, and Cisco Meraki configurations to enforce security controls and ensure compliance</li>
-              <li>Engineered risk reduction across AI, SaaS, OT, manufacturing, and IoT environments through vulnerability assessments and isolation strategies</li>
-              <li>Conducted NIST-aligned risk assessments, log forensics, and incident response analysis to detect, contain, and mitigate security incidents</li>
-              <li>Supported audits, vendor SaaS reviews, and governance activities by developing KPIs and embedding risk management into business decisions</li>
-            </ul>
-            <div class="tl-tags">
-              <span>Azure</span><span>M365 Defender</span><span>Proofpoint</span><span>Cisco Meraki</span><span>NIST</span><span>Risk Assessment</span>
-            </div>
+        <div class="role fade-in">
+          <div class="role-when">Feb 2025 — Jul 2025</div>
+          <div class="role-what">
+            <div class="role-title">Information Security Analyst</div>
+            <div class="role-company">BayForce</div>
+            <p class="role-line">Assessed and hardened Azure, Microsoft 365 Defender, Proofpoint, and Cisco Meraki configurations to enforce security controls and ensure compliance</p>
+            <div class="role-tags"><span>Azure</span><span>M365 Defender</span><span>Proofpoint</span></div>
           </div>
         </div>
-
-        <!-- Augusta University -->
-        <div class="tl-item fade-in">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div>
-                <div class="tl-title">Security Operations Center Analyst</div>
-                <div class="tl-company">Augusta University — Augusta, GA</div>
-              </div>
-              <div class="tl-meta">
-                <span class="tl-date">May 2024 — Sep 2024</span>
-              </div>
-            </div>
-            <ul class="tl-bullets">
-              <li>Monitored and investigated alerts using Microsoft Sentinel, Defender XDR, and Cisco Secure Endpoint, reducing average incident response time by 20%</li>
-              <li>Conducted endpoint threat investigations — analyzing device timelines, processes, and user activity to identify and contain malicious behavior</li>
-              <li>Developed and tuned Sentinel workbooks, analytic rules, and automated playbooks to enhance detection coverage and response consistency</li>
-              <li>Performed KQL-based log analysis across Azure security data sources to identify IoCs and mitigate 50+ potential threats</li>
-            </ul>
-            <div class="tl-tags">
-              <span>Microsoft Sentinel</span><span>Defender XDR</span><span>KQL</span><span>Cisco Secure Endpoint</span><span>SOC Analysis</span>
-            </div>
+        <div class="role fade-in">
+          <div class="role-when">May 2024 — Sep 2024</div>
+          <div class="role-what">
+            <div class="role-title">Security Operations Center Analyst</div>
+            <div class="role-company">Augusta University — Augusta, GA</div>
+            <p class="role-line">Monitored and investigated alerts using Microsoft Sentinel, Defender XDR, and Cisco Secure Endpoint, reducing average incident response time by 20%</p>
+            <div class="role-tags"><span>Microsoft Sentinel</span><span>Defender XDR</span><span>KQL</span></div>
           </div>
         </div>
-
-        <!-- Army Cyber Command -->
-        <div class="tl-item fade-in">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-header">
-              <div>
-                <div class="tl-title">Cyber Operations Specialist</div>
-                <div class="tl-company">Army Cyber Command — Fort Eisenhower, GA</div>
-              </div>
-              <div class="tl-meta">
-                <span class="tl-date">Dec 2021 — Sep 2024</span>
-                <span class="tl-badge military">U.S. Army</span>
-              </div>
-            </div>
-            <ul class="tl-bullets">
-              <li>Conducted proactive threat hunting using Microsoft Defender XDR with digital forensics and malware analysis, increasing early threat detection by 30%</li>
-              <li>Implemented and maintained Microsoft Sentinel and IDS platforms, improving detection coverage and alert fidelity by 40%</li>
-              <li>Correlated security events across DoD systems to identify complex attack patterns associated with state-sponsored threat actors</li>
-              <li>Led annual security control self-assessments aligned to CND policies, achieving 100% compliance across all monitored systems</li>
-            </ul>
-            <div class="tl-tags">
-              <span>Defender XDR</span><span>Microsoft Sentinel</span><span>Threat Hunting</span><span>DFIR</span><span>Malware Analysis</span><span>DoD</span>
-            </div>
+        <div class="role fade-in">
+          <div class="role-when">Dec 2021 — Sep 2024<span class="tl-badge ">U.S. Army</span></div>
+          <div class="role-what">
+            <div class="role-title">Cyber Operations Specialist</div>
+            <div class="role-company">Army Cyber Command — Fort Eisenhower, GA</div>
+            <p class="role-line">Conducted proactive threat hunting using Microsoft Defender XDR with digital forensics and malware analysis, increasing early threat detection by 30%</p>
+            <div class="role-tags"><span>Defender XDR</span><span>Microsoft Sentinel</span><span>Threat Hunting</span></div>
           </div>
         </div>
-
-        <!-- US CENTCOM -->
-        <div class="tl-item fade-in">
-          <div class="tl-dot tl-dot-muted"></div>
-          <div class="tl-card tl-card-muted">
-            <div class="tl-header">
-              <div>
-                <div class="tl-title">Senior Information Technology Specialist</div>
-                <div class="tl-company">US Central Command — Camp Arifjan, Kuwait</div>
-              </div>
-              <div class="tl-meta">
-                <span class="tl-date">Dec 2019 — Dec 2021</span>
-                <span class="tl-badge military">U.S. Army</span>
-              </div>
-            </div>
-            <ul class="tl-bullets">
-              <li>Established and led an OPSEC program to address compliance gaps, achieving 100% pass rate on all operations security inspections</li>
-              <li>Investigated and resolved 200+ security incidents using Splunk, Tenable, Microsoft Sentinel, and Defender to maintain system integrity</li>
-              <li>Automated security operations and response workflows using PowerShell, BASH, and Python to improve efficiency and scalability</li>
-              <li>Led STIG implementation and vulnerability remediation, reducing system vulnerabilities by 40%</li>
-            </ul>
-            <div class="tl-tags">
-              <span>Splunk</span><span>Tenable</span><span>OPSEC</span><span>STIGs</span><span>PowerShell</span><span>Python</span>
-            </div>
+        <div class="role fade-in">
+          <div class="role-when">Dec 2019 — Dec 2021<span class="tl-badge ">U.S. Army</span></div>
+          <div class="role-what">
+            <div class="role-title">Senior Information Technology Specialist</div>
+            <div class="role-company">US Central Command — Camp Arifjan, Kuwait</div>
+            <p class="role-line">Established and led an OPSEC program to address compliance gaps, achieving 100% pass rate on all operations security inspections</p>
+            <div class="role-tags"><span>Splunk</span><span>Tenable</span><span>OPSEC</span></div>
           </div>
         </div>
-
-        <!-- Army NETCOM -->
-        <div class="tl-item fade-in">
-          <div class="tl-dot tl-dot-muted"></div>
-          <div class="tl-card tl-card-muted">
-            <div class="tl-header">
-              <div>
-                <div class="tl-title">Helpdesk Manager</div>
-                <div class="tl-company">Army NETCOM — Fort Lewis, WA</div>
-              </div>
-              <div class="tl-meta">
-                <span class="tl-date">Nov 2016 — Dec 2019</span>
-                <span class="tl-badge military">U.S. Army</span>
-              </div>
-            </div>
-            <ul class="tl-bullets">
-              <li>Led secure IT support operations for 1,000+ users, enforcing security protocols, access controls, and data protection measures</li>
-              <li>Managed and mentored a team of 10 help desk technicians, improving team efficiency by 25%</li>
-              <li>Delivered security awareness and training programs that reduced user-error-driven security incidents by 50%</li>
-            </ul>
-            <div class="tl-tags">
-              <span>IT Operations</span><span>Security Awareness</span><span>Windows</span><span>Team Leadership</span><span>Veteran</span>
-            </div>
+        <div class="role fade-in">
+          <div class="role-when">Nov 2016 — Dec 2019<span class="tl-badge ">U.S. Army</span></div>
+          <div class="role-what">
+            <div class="role-title">Helpdesk Manager</div>
+            <div class="role-company">Army NETCOM — Fort Lewis, WA</div>
+            <p class="role-line">Led secure IT support operations for 1,000+ users, enforcing security protocols, access controls, and data protection measures</p>
+            <div class="role-tags"><span>IT Operations</span><span>Security Awareness</span><span>Windows</span></div>
           </div>
         </div>
-
       </div>
+      <a class="work-link roles-more" href="https://1drv.ms/b/s!AjUaEY2n6SO7wFvYzGOdHLzm5_Qd?e=etfCqM" target="_blank" rel="noopener">Full resume <span aria-hidden="true">&rarr;</span></a>
     </div>
   </section>
 
