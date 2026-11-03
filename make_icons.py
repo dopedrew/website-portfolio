@@ -21,9 +21,9 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).parent
 FONT = Path("/home/dopedrew/ops/tools/fonts/Archivo-VF.ttf")  # Inter stand-in, same grotesque
 
-BG = (11, 14, 19)        # --bg          #0b0e13
-TEXT = (231, 233, 236)   # --text        #e7e9ec
-ACCENT = (63, 109, 145)  # --accent-fill #3f6d91
+BG = (12, 13, 16)        # --bg          #0c0d10
+TEXT = (234, 232, 227)   # --text        #eae8e3
+ACCENT = (150, 117, 58)  # --accent-fill #96753a
 
 MASTER = 1024
 
