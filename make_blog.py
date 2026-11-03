@@ -38,7 +38,7 @@ HEAD = """<!DOCTYPE html>
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#0c0d10" />
+  <meta name="theme-color" content="#f6f3ee" />
   <meta property="og:title" content="{og_title}" />
   <meta property="og:description" content="{desc}" />
   <meta property="og:type" content="{og_type}" />
