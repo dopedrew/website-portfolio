@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import re
 import shutil
 from datetime import datetime, timezone
@@ -28,6 +29,7 @@ SERIES = Path("/home/dopedrew/ops/repos/research/blogs/cti-platform-build-series
 COVERS = SERIES / "covers"
 SITE = "https://www.andrew-hogan.com"
 OUT = ROOT / "blog"
+DATES = ROOT / "blog" / "dates.json"
 IMG_OUT = ROOT / "images" / "blog"
 
 HEAD = """<!DOCTYPE html>
@@ -79,6 +81,19 @@ FOOT = """
 """
 
 
+def load_dates() -> dict:
+    """Publish dates per slug.
+
+    The series source carries no DATE, so the first render of a post stamps
+    it and the value is committed. Without this every regeneration would
+    re-date the whole archive to today, which is worse than no date at all.
+    """
+    try:
+        return json.loads(DATES.read_text())
+    except Exception:
+        return {}
+
+
 def parse(path: Path) -> dict:
     lines = path.read_text().rstrip().split("\n")
     meta, body_start = {}, 0
@@ -107,6 +122,27 @@ def parse(path: Path) -> dict:
 
 def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict | None) -> str:
     esc = html.escape
+    # BlogPosting is what lets a post be cited as a dated, attributed source
+    # by search and AI answer engines instead of read as anonymous text.
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post["title"],
+        "description": post["summary"],
+        "datePublished": post.get("date"),
+        "dateModified": post.get("date"),
+        "author": {"@id": f"{SITE}/#person"},
+        "publisher": {"@id": f"{SITE}/#person"},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": f"{SITE}/blog/{post['slug']}.html"},
+        "inLanguage": "en-US",
+    }
+    if cover:
+        schema["image"] = f"{SITE}{cover}"
+    if post.get("series"):
+        schema["isPartOf"] = {"@type": "CreativeWorkSeries", "name": post["series"]}
+    schema = {k: v for k, v in schema.items() if v is not None}
+    schema_tag = ('<script type="application/ld+json">'
+                  + json.dumps(schema) + "</script>")
     og_image = (f'<meta property="og:image" content="https://www.andrew-hogan.com{cover}" />'
                 if cover else "")
     body = []
@@ -131,11 +167,13 @@ def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict |
                     desc=esc(post["summary"]),
                     canonical=f"{SITE}/blog/{post['slug']}.html",
                     og_image=og_image)
+        + schema_tag
         + f"""
   <article class="section post-page">
     <div class="container narrow">
       <a class="post-back" href="/blog/">&larr; All writing</a>
       <div class="post-kicker">{esc(post['series'])}</div>
+      {f'<p class="post-date"><time datetime="{post["date"]}">{post["date"]}</time></p>' if post.get("date") else ''}
       <h1 class="post-h1">{esc(post['title'])}</h1>
       {f'<img class="post-cover" src="{cover}" alt="Cover illustration for {esc(post["title"])}" />' if cover else ''}
       <div class="post-body">
@@ -150,6 +188,26 @@ def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict |
 
 def render_index(posts: list[dict], covers: dict) -> str:
     esc = html.escape
+    # Blog node ties the individual BlogPosting pages together as one body of
+    # work rather than leaving them as unrelated documents.
+    blog_schema_tag = '<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "@id": f"{SITE}/blog/#blog",
+        "url": f"{SITE}/blog/",
+        "name": "Field notes — Andrew Hogan",
+        "description": "Build logs from the threat intelligence platform, detection lab, and security tooling I run in production.",
+        "inLanguage": "en-US",
+        "author": {"@id": f"{SITE}/#person"},
+        "publisher": {"@id": f"{SITE}/#person"},
+        "blogPost": [
+            {"@type": "BlogPosting",
+             "headline": p["title"],
+             "url": f"{SITE}/blog/{p['slug']}.html",
+             "datePublished": p.get("date")}
+            for p in posts
+        ],
+    }) + "</script>"
     cards = []
     for p in posts:
         c = covers.get(p["stem"])
@@ -162,12 +220,13 @@ def render_index(posts: list[dict], covers: dict) -> str:
           </div>
         </a>""")
     return (
-        HEAD.format(title="Writing — Build Logs on Threat Intelligence and Detection | Andrew Hogan",
+        blog_schema_tag
+        + HEAD.format(title="Writing — Build Logs on Threat Intelligence and Detection | Andrew Hogan",
                     og_title="Writing — Andrew Hogan",
                     og_type="website",
                     desc="Build logs from the threat intelligence platform, detection lab, and security tooling Andrew Hogan runs in production. Ingestion, scoring, enrichment, and asset matching.",
                     canonical=f"{SITE}/blog/",
-                    og_image="")
+                    og_image=f'<meta property="og:image" content="{SITE}/og-image.png" />')
         + f"""
   <section class="section post-index">
     <div class="container">
@@ -209,6 +268,10 @@ def main() -> None:
     OUT.mkdir(exist_ok=True)
     IMG_OUT.mkdir(parents=True, exist_ok=True)
 
+    dates = load_dates()
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    dates_changed = False
+
     sources = sorted(p for p in SERIES.glob("*.md") if p.name.lower() != "readme.md")
     posts, covers = [], {}
     for src in sources:
@@ -216,6 +279,10 @@ def main() -> None:
         if not cover_src.exists() and not args.all:
             continue
         post = parse(src)
+        if post["slug"] not in dates:
+            dates[post["slug"]] = today
+            dates_changed = True
+        post["date"] = dates[post["slug"]]
         posts.append(post)
         if cover_src.exists():
             shutil.copy(cover_src, IMG_OUT / f"{post['slug']}.png")
@@ -226,6 +293,10 @@ def main() -> None:
         next_ = posts[i + 1] if i + 1 < len(posts) else None
         (OUT / f"{post['slug']}.html").write_text(
             render_post(post, covers.get(post["stem"]), prev_, next_))
+
+    if dates_changed:
+        DATES.write_text(json.dumps(dates, indent=2, sort_keys=True) + "\n")
+        print(f"stamped publish date for {len(dates)} post(s)")
 
     (OUT / "index.html").write_text(render_index(posts, covers))
     write_sitemap(posts)
