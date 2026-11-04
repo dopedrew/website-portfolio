@@ -58,7 +58,10 @@ HEAD = """<!DOCTYPE html>
   <nav id="navbar">
     <div class="nav-inner">
       <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
-      <div class="nav-links">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="/#work">Work</a>
         <a href="/blog/">Writing</a>
         <a href="/#about">About</a>
@@ -67,6 +70,28 @@ HEAD = """<!DOCTYPE html>
       </div>
     </div>
   </nav>
+"""
+
+NAV_JS = """
+  <script>
+    (function () {
+      var t = document.querySelector('.nav-toggle'),
+          n = document.getElementById('nav-links');
+      if (!t || !n) return;
+      t.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        t.setAttribute('aria-expanded', open);
+        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    })();
+  </script>
 """
 
 FOOT = """
@@ -183,7 +208,7 @@ def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict |
     </div>
   </article>
 """
-        + FOOT.format(year=datetime.now(timezone.utc).year))
+        + NAV_JS + FOOT.format(year=datetime.now(timezone.utc).year))
 
 
 def render_index(posts: list[dict], covers: dict) -> str:
@@ -240,7 +265,7 @@ def render_index(posts: list[dict], covers: dict) -> str:
     </div>
   </section>
 """
-        + FOOT.format(year=datetime.now(timezone.utc).year))
+        + NAV_JS + FOOT.format(year=datetime.now(timezone.utc).year))
 
 
 def write_sitemap(posts: list[dict]) -> None:

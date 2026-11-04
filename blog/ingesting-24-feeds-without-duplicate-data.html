@@ -24,7 +24,10 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
-      <div class="nav-links">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
         <a href="/#work">Work</a>
         <a href="/blog/">Writing</a>
         <a href="/#about">About</a>
@@ -51,6 +54,26 @@
       <div class="post-nav"><a class="post-nav-link" href="/blog/why-i-built-my-own-threat-intel-platform.html"><span>Previous</span>Why I Built My Own Threat Intel Platform Instead of Paying for One</a><a class="post-nav-link next" href="/blog/scoring-194000-vulnerabilities.html"><span>Next</span>Scoring 194,000 Vulnerabilities by What Actually Matters</a></div>
     </div>
   </article>
+
+  <script>
+    (function () {
+      var t = document.querySelector('.nav-toggle'),
+          n = document.getElementById('nav-links');
+      if (!t || !n) return;
+      t.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        t.setAttribute('aria-expanded', open);
+        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    })();
+  </script>
 
   <footer class="footer">
     <div class="container footer-inner">

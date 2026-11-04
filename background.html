@@ -131,7 +131,10 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
-      <ul class="nav-links">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
         <li><a href="/#work">Work</a></li>
         <li><a href="/#writing">Writing</a></li>
         <li><a href="/#about">About</a></li>
@@ -413,6 +416,23 @@
   </footer>
 
   <script>
+    (function () {
+      var t = document.querySelector('.nav-toggle'),
+          n = document.getElementById('nav-links');
+      if (!t || !n) return;
+      t.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        t.setAttribute('aria-expanded', open);
+        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    })();
     window.addEventListener('scroll', () => {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
