@@ -66,6 +66,35 @@ body {
 }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
 
+/* Hamburger. Drawn in CSS rather than an icon font because the generated
+   blog pages do not load Font Awesome. Hidden above the mobile breakpoint. */
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform .2s, opacity .2s;
+}
+/* Collapse the bars into an X while the panel is open. */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 /* Left-aligned and sized to its content. A centred 100vh hero leaves a screen
    of dead space above the first real thing on the page. */
@@ -578,7 +607,36 @@ body {
 }
 
 @media (max-width: 640px) {
-  .nav-links { display: none; }
+  /* The nav used to be display:none here with nothing to replace it, so the
+     bar was just the wordmark and the site had no mobile navigation at all. */
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 6px 28px 14px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 10px 20px rgba(29, 26, 21, .06);
+  }
+  .nav-links.open { display: flex; }
+  /* Works for both markup shapes: <ul><li><a> on the static pages and a
+     plain <div><a> in the generated blog template. */
+  .nav-links li { list-style: none; }
+  .nav-links li a,
+  .nav-links > a {
+    display: block;
+    padding: 12px 0;
+    font-size: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links li:last-child a,
+  .nav-links > a:last-child { border-bottom: 0; }
   .hero { padding: 120px 0 64px; }
   .section { padding: 64px 0; }
   .page-head { padding: 118px 0 6px; }
