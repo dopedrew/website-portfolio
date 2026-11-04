@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="CVSS tells you how bad a vulnerability could be in theory. It does not tell you how likely anyone is to actually use it against you. Those are different questions, and conflating them is how security…" />
+  <link rel="canonical" href="https://www.andrew-hogan.com/blog/scoring-194000-vulnerabilities.html" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -26,8 +27,8 @@
       <div class="nav-links">
         <a href="/#work">Work</a>
         <a href="/blog/">Writing</a>
-        <a href="/#experience">Experience</a>
         <a href="/#about">About</a>
+        <a href="/background.html">Background</a>
         <a href="/#contact">Contact</a>
       </div>
     </div>
@@ -38,7 +39,7 @@
       <a class="post-back" href="/blog/">&larr; All writing</a>
       <div class="post-kicker">Building a CTI Platform From Scratch (3 of 10)</div>
       <h1 class="post-h1">Scoring 194,000 Vulnerabilities by What Actually Matters</h1>
-      <img class="post-cover" src="/images/blog/scoring-194000-vulnerabilities.png" alt="" />
+      <img class="post-cover" src="/images/blog/scoring-194000-vulnerabilities.png" alt="Cover illustration for Scoring 194,000 Vulnerabilities by What Actually Matters" />
       <div class="post-body">
       <p class="post-lede">CVSS tells you how bad a vulnerability could be in theory. It does not tell you how likely anyone is to actually use it against you. Those are different questions, and conflating them is how security teams end up patching a 9.8 that nobody has ever exploited while a 7.1 with active exploitation sits in the backlog.</p>
       <p>The platform scores every vulnerability it tracks on two things CVSS does not capture: EPSS, the Exploit Prediction Scoring System, which estimates the probability a CVE will be exploited in the next 30 days based on observed attacker behavior, and exploit availability, whether a working public proof of concept actually exists. 183,000 of the 194,000 vulnerabilities in the database carry an EPSS score. That is the layer that turns a flat list of CVEs into something you can actually triage.</p>
@@ -54,7 +55,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span class="nav-logo">AH<span class="accent">.</span></span>
-      <p>&copy; 2026 Andrew Hogan &middot; Built with intention.</p>
+      <p>&copy; 2026 Andrew Hogan</p>
     </div>
   </footer>
 </body>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="The platform runs 24 separate ingestion jobs on their own schedules, CISA KEV, VulnCheck KEV, NVD, GitHub Advisories, ThreatFox, MalwareBazaar, URLhaus, SSLBL, Spamhaus, OTX, EPSS, CWE mappings,…" />
+  <link rel="canonical" href="https://www.andrew-hogan.com/blog/ingesting-24-feeds-without-duplicate-data.html" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -26,8 +27,8 @@
       <div class="nav-links">
         <a href="/#work">Work</a>
         <a href="/blog/">Writing</a>
-        <a href="/#experience">Experience</a>
         <a href="/#about">About</a>
+        <a href="/background.html">Background</a>
         <a href="/#contact">Contact</a>
       </div>
     </div>
@@ -38,7 +39,7 @@
       <a class="post-back" href="/blog/">&larr; All writing</a>
       <div class="post-kicker">Building a CTI Platform From Scratch (2 of 10)</div>
       <h1 class="post-h1">Ingesting 24 Feeds Without Drowning in Duplicate Data</h1>
-      <img class="post-cover" src="/images/blog/ingesting-24-feeds-without-duplicate-data.png" alt="" />
+      <img class="post-cover" src="/images/blog/ingesting-24-feeds-without-duplicate-data.png" alt="Cover illustration for Ingesting 24 Feeds Without Drowning in Duplicate Data" />
       <div class="post-body">
       <p class="post-lede">The platform runs 24 separate ingestion jobs on their own schedules, CISA KEV, VulnCheck KEV, NVD, GitHub Advisories, ThreatFox, MalwareBazaar, URLhaus, SSLBL, Spamhaus, OTX, EPSS, CWE mappings, Sigma rules, HIBP exposure checks, passive DNS, honeypot hits, and a handful of security news RSS feeds. Most of them write into their own table. The ones that overlap are where it gets interesting.</p>
       <p>CISA&#x27;s Known Exploited Vulnerabilities catalog is the clearest example. I had five different pieces of code that each touch KEV data: one pulls the raw CISA catalog, one enriches entries with MITRE ATT&amp;CK mappings, one cross-references VulnCheck&#x27;s broader exploited-vulnerability list, one does CVSS backfill, one tracks how fast new entries get added. Each one was writing rows into the same vulnerabilities table, and each one, independently, decided to label its own rows with a slightly different source string. CISA KEV. cisa-kev. kev. VulnCheck-KEV. A fifth variant in mixed case from an older version of the code that never got cleaned up.</p>
@@ -53,7 +54,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span class="nav-logo">AH<span class="accent">.</span></span>
-      <p>&copy; 2026 Andrew Hogan &middot; Built with intention.</p>
+      <p>&copy; 2026 Andrew Hogan</p>
     </div>
   </footer>
 </body>
