@@ -26,6 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SERIES = Path("/home/dopedrew/ops/repos/research/blogs/cti-platform-build-series")
 COVERS = SERIES / "covers"
+SITE = "https://www.andrew-hogan.com"
 OUT = ROOT / "blog"
 IMG_OUT = ROOT / "images" / "blog"
 
@@ -35,6 +36,7 @@ HEAD = """<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="{desc}" />
+  <link rel="canonical" href="{canonical}" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -57,8 +59,8 @@ HEAD = """<!DOCTYPE html>
       <div class="nav-links">
         <a href="/#work">Work</a>
         <a href="/blog/">Writing</a>
-        <a href="/#experience">Experience</a>
         <a href="/#about">About</a>
+        <a href="/background.html">Background</a>
         <a href="/#contact">Contact</a>
       </div>
     </div>
@@ -69,7 +71,7 @@ FOOT = """
   <footer class="footer">
     <div class="container footer-inner">
       <span class="nav-logo">AH<span class="accent">.</span></span>
-      <p>&copy; {year} Andrew Hogan &middot; Built with intention.</p>
+      <p>&copy; {year} Andrew Hogan</p>
     </div>
   </footer>
 </body>
@@ -127,6 +129,7 @@ def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict |
                     og_title=esc(post["title"]),
                     og_type="article",
                     desc=esc(post["summary"]),
+                    canonical=f"{SITE}/blog/{post['slug']}.html",
                     og_image=og_image)
         + f"""
   <article class="section post-page">
@@ -134,7 +137,7 @@ def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict |
       <a class="post-back" href="/blog/">&larr; All writing</a>
       <div class="post-kicker">{esc(post['series'])}</div>
       <h1 class="post-h1">{esc(post['title'])}</h1>
-      {f'<img class="post-cover" src="{cover}" alt="" />' if cover else ''}
+      {f'<img class="post-cover" src="{cover}" alt="Cover illustration for {esc(post["title"])}" />' if cover else ''}
       <div class="post-body">
 {chr(10).join(body)}
       </div>
@@ -151,7 +154,7 @@ def render_index(posts: list[dict], covers: dict) -> str:
     for p in posts:
         c = covers.get(p["stem"])
         cards.append(f"""        <a class="post-card" href="/blog/{p['slug']}.html">
-          {f'<img src="{c}" alt="" />' if c else ''}
+          {f'<img src="{c}" alt="Cover illustration for {esc(p["title"])}" />' if c else ''}
           <div class="post-card-body">
             <div class="post-card-kicker">Part {p['part']} of {p['total']}</div>
             <h2>{esc(p['title'])}</h2>
@@ -159,10 +162,11 @@ def render_index(posts: list[dict], covers: dict) -> str:
           </div>
         </a>""")
     return (
-        HEAD.format(title="Writing — Andrew Hogan",
+        HEAD.format(title="Writing — Build Logs on Threat Intelligence and Detection | Andrew Hogan",
                     og_title="Writing — Andrew Hogan",
                     og_type="website",
-                    desc="Build logs on threat intelligence, detection engineering, and security tooling.",
+                    desc="Build logs from the threat intelligence platform, detection lab, and security tooling Andrew Hogan runs in production. Ingestion, scoring, enrichment, and asset matching.",
+                    canonical=f"{SITE}/blog/",
                     og_image="")
         + f"""
   <section class="section post-index">
@@ -178,6 +182,22 @@ def render_index(posts: list[dict], covers: dict) -> str:
   </section>
 """
         + FOOT.format(year=datetime.now(timezone.utc).year))
+
+
+def write_sitemap(posts: list[dict]) -> None:
+    """Emit sitemap.xml covering the static pages plus every published post.
+
+    Generated here rather than kept by hand: the post list grows every week
+    through the series publisher, and a stale sitemap is worse than none.
+    """
+    urls = [f"{SITE}/", f"{SITE}/background.html", f"{SITE}/blog/"]
+    urls += [f"{SITE}/blog/{p['slug']}.html" for p in posts]
+    body = "\n".join(f"  <url><loc>{u}</loc></url>" for u in urls)
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{body}\n</urlset>\n")
+    print(f"wrote sitemap.xml ({len(urls)} urls)")
 
 
 def main() -> None:
@@ -208,6 +228,7 @@ def main() -> None:
             render_post(post, covers.get(post["stem"]), prev_, next_))
 
     (OUT / "index.html").write_text(render_index(posts, covers))
+    write_sitemap(posts)
     print(f"rendered {len(posts)} post(s) + index into {OUT}")
     for p in posts:
         print(f"  /blog/{p['slug']}.html")
