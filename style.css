@@ -7,10 +7,13 @@
   --surface:    #ffffff;
   --border:     rgba(29,26,21,.10);
   --rule:       rgba(29,26,21,.16);
-  --accent:     #8a6530;
+  --accent:     #8a6530;          /* fills and rules only */
   --accent-fill:#6f5225;
+  /* Accent as TEXT measured 4.37:1 on the alt band, just under the 4.5 AA
+     threshold. Fills keep --accent; text uses the darker variant. */
+  --accent-text:#7a592b;
   --text:       #1d1a15;
-  --muted:      #6e6459;
+  --muted:      #685e54;          /* was #6e6459: 4.35:1 on tinted chips */
   --radius:     6px;
 }
 
@@ -32,14 +35,16 @@ body {
 
 .container { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
 .container.narrow { max-width: 720px; }
-.accent { color: var(--accent); }
+.accent { color: var(--accent-text); }
 
 /* ── Navbar ────────────────────────────────────────────────────────────── */
 #navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 16px 28px;
+  /* Horizontal padding moved onto .nav-inner so the nav column lines up with
+     .container, which carries its own 28px. They were 28px out of step. */
+  padding: 16px 0;
   transition: background .3s, backdrop-filter .3s, box-shadow .3s;
 }
 #navbar.scrolled {
@@ -49,13 +54,14 @@ body {
 }
 .nav-inner {
   max-width: 1060px;
+  padding: 0 28px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 32px;
 }
 .nav-logo-link { text-decoration: none; }
-.nav-logo { font-size: 19px; font-weight: 800; letter-spacing: -.5px; color: var(--text); }
+.nav-logo { font-size: 19px; font-weight: 800; letter-spacing: -.026em; color: var(--text); }
 .nav-links { display: flex; list-style: none; gap: 26px; margin-left: auto; }
 .nav-links a {
   color: var(--muted);
@@ -105,13 +111,15 @@ body {
   font-size: 12px;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 20px;
 }
 .hero h1 {
   font-size: clamp(2.3rem, 5.2vw, 3.7rem);
   font-weight: 600;
-  letter-spacing: -.5px;
+  /* em, not px: tracking has to scale with a fluid size and with the user's
+     text-size setting. -.5px at the 59px cap is -.0085em. */
+  letter-spacing: -.0085em;
   line-height: 1.12;
   margin-bottom: 22px;
   max-width: 21ch;
@@ -123,6 +131,7 @@ body {
   max-width: 62ch;
   margin-bottom: 30px;
 }
+.hero-meta { text-wrap: pretty; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px; }
 .hero-meta {
   font-family: 'JetBrains Mono', monospace;
@@ -167,7 +176,7 @@ body {
   gap: 16px;
   font-size: clamp(1.5rem, 2.6vw, 1.95rem);
   font-weight: 600;
-  letter-spacing: -.2px;
+  letter-spacing: -.0064em;
   margin-bottom: 14px;
   color: var(--text);
 }
@@ -176,7 +185,7 @@ body {
   font-size: .72rem;
   font-weight: 500;
   letter-spacing: .1em;
-  color: var(--accent);
+  color: var(--accent-text);
   transform: translateY(-.35em);
 }
 .section-label {
@@ -185,7 +194,7 @@ body {
   font-weight: 500;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 12px;
 }
 .section-lede {
@@ -214,7 +223,7 @@ body {
 .project-idx {
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.5rem;
-  color: var(--accent);
+  color: var(--accent-text);
   line-height: 1;
 }
 .project-status {
@@ -271,7 +280,7 @@ body {
   margin-top: 16px;
   font-size: .9rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
 }
 .project-link span { display: inline-block; transition: transform .2s; }
@@ -295,7 +304,7 @@ body {
   font-size: .7rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   padding-top: 4px;
 }
 .post-title {
@@ -323,7 +332,7 @@ body {
 .about-photo img { width: 100%; display: block; border-radius: var(--radius); }
 
 .inline-link {
-  color: var(--accent);
+  color: var(--accent-text);
   text-decoration: none;
   border-bottom: 1px solid rgba(138,101,48,.4);
 }
@@ -355,14 +364,14 @@ body {
   transition: border-color .2s, background .2s;
 }
 .contact-list a:hover { border-color: var(--accent); background: rgba(138,101,48,.05); }
-.contact-list i { color: var(--accent); }
+.contact-list i { color: var(--accent-text); }
 
 /* ── Page head (interior pages) ────────────────────────────────────────── */
 .page-head { padding: 140px 0 10px; }
 .page-head h1 {
   font-size: clamp(2rem, 4.4vw, 2.9rem);
   font-weight: 600;
-  letter-spacing: -.3px;
+  letter-spacing: -.0065em;
   margin-bottom: 16px;
 }
 .post-back {
@@ -374,7 +383,7 @@ body {
   text-decoration: none;
   margin-bottom: 26px;
 }
-.post-back:hover { color: var(--accent); }
+.post-back:hover { color: var(--accent-text); }
 
 /* ── Career list (background page) ─────────────────────────────────────── */
 .roles { display: flex; flex-direction: column; }
@@ -397,7 +406,7 @@ body {
   padding-top: 3px;
 }
 .role-title { font-size: 1.06rem; font-weight: 700; }
-.role-company { color: var(--accent); font-size: .9rem; margin-top: 2px; }
+.role-company { color: var(--accent-text); font-size: .9rem; margin-top: 2px; }
 .role-line { color: var(--muted); line-height: 1.68; font-size: .93rem; margin: 10px 0 12px; max-width: 62ch; }
 .role-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .role-tags span {
@@ -420,7 +429,7 @@ body {
   text-transform: uppercase;
   letter-spacing: .06em;
 }
-.tl-badge.current { color: var(--accent); border-color: rgba(138,101,48,.4); }
+.tl-badge.current { color: var(--accent-text); border-color: rgba(138,101,48,.4); }
 
 /* ── Skills (background page) ──────────────────────────────────────────── */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
@@ -439,7 +448,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: .9rem;
   margin-bottom: 12px;
 }
@@ -493,7 +502,10 @@ body {
 .cert-card:hover span { color: var(--text); }
 
 /* ── Blog ──────────────────────────────────────────────────────────────── */
-.post-index .post-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.post-index .post-list { display: grid;
+  /* min() lets the track collapse below 300px instead of overflowing the
+     viewport at 320px, where the available column is only 264px. */
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 20px; }
 .post-card {
   display: flex;
   flex-direction: column;
@@ -512,7 +524,7 @@ body {
   font-size: .68rem;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 10px;
 }
 .post-card h2 {
@@ -531,7 +543,7 @@ body {
   font-size: .7rem;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
   margin-bottom: 14px;
 }
 .post-date {
@@ -642,4 +654,116 @@ body {
   .page-head { padding: 118px 0 6px; }
   .cert-card { width: 110px; }
   .footer-inner { flex-direction: column; }
+}
+
+/* ── Interaction states ───────────────────────────────────────────────────
+   The stylesheet previously had 13 :hover rules and zero :focus/:active.
+   Hover does not exist on touch, and feedback belongs on pointer-down. */
+
+/* One visible focus treatment everywhere. :focus-visible so pointer users
+   don't see rings on click while keyboard users always do. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent-text);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* The navbar is fixed at 62px, so an in-page jump would otherwise land the
+   target underneath it. */
+:target,
+section[id],
+main[id] {
+  scroll-margin-top: calc(62px + 18px);
+}
+
+/* Instant acknowledgement on press, which hover cannot provide on a phone. */
+.btn:active,
+.nav-toggle:active,
+.work-item:active,
+.post-card:active {
+  transform: scale(.97);
+  transition: transform .1s ease-out;
+}
+
+/* Minimum 44px touch targets. The arrow links were 19 to 23px tall. */
+.nav-toggle { min-width: 44px; min-height: 44px; }
+
+/* These were 19 to 23px tall. Padding grows the hit area to 44px without
+   changing the visual weight of the link itself. */
+.project-link,
+.inline-link,
+.post-back,
+.work-link,
+.contact-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+/* The wordmark is the only route home on small screens. */
+.nav-logo-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+}
+
+@media (max-width: 860px) {
+  .nav-links a { padding-top: 12px; padding-bottom: 12px; display: block; }
+}
+
+/* ── Scroll edge ──────────────────────────────────────────────────────────
+   A hard 1px line slices headings as they pass under the floating bar.
+   A short fade reads as the content passing beneath a material instead. */
+#navbar.scrolled::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 100%;
+  height: 14px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(246,243,238,.75), rgba(246,243,238,0));
+}
+
+/* ── Accessibility preferences ────────────────────────────────────────────
+   Three independent signals. Reduced motion does not mean no feedback; it
+   means a gentler, non-vestibular equivalent. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .btn:active,
+  .nav-toggle:active,
+  .work-item:active,
+  .post-card:active { transform: none; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  #navbar.scrolled {
+    background: var(--bg);
+    backdrop-filter: none;
+  }
+  #navbar.scrolled::after { background: none; }
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  #navbar.scrolled { background: var(--bg); }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --muted:       #4a423a;
+    --accent-text: #5e4420;
+    --border:      rgba(29,26,21,.30);
+    --rule:        rgba(29,26,21,.42);
+  }
+  .nav-links a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+  .btn-ghost { border-color: var(--text); }
 }

@@ -70,10 +70,22 @@ HEAD = """<!DOCTYPE html>
       </div>
     </div>
   </nav>
+
+  <main id="main">
 """
 
 NAV_JS = """
   <script>
+    // Blog pages share the fixed navbar, so they need the same scrolled
+    // material the home and background pages use.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
     (function () {
       var t = document.querySelector('.nav-toggle'),
           n = document.getElementById('nav-links');
@@ -82,6 +94,15 @@ NAV_JS = """
         var open = n.classList.toggle('open');
         t.setAttribute('aria-expanded', open);
         t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
       });
       n.addEventListener('click', function (e) {
         if (e.target.tagName === 'A') {
@@ -95,6 +116,8 @@ NAV_JS = """
 """
 
 FOOT = """
+  </main>
+
   <footer class="footer">
     <div class="container footer-inner">
       <span class="nav-logo">AH<span class="accent">.</span></span>
@@ -186,7 +209,7 @@ def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict |
                    f'<span>Next</span>{esc(next_["title"])}</a>')
 
     return (
-        HEAD.format(title=esc(post["title"]) + " — Andrew Hogan",
+        HEAD.format(title=esc(post["title"]) + " | Andrew Hogan",
                     og_title=esc(post["title"]),
                     og_type="article",
                     desc=esc(post["summary"]),
@@ -220,7 +243,7 @@ def render_index(posts: list[dict], covers: dict) -> str:
         "@type": "Blog",
         "@id": f"{SITE}/blog/#blog",
         "url": f"{SITE}/blog/",
-        "name": "Field notes — Andrew Hogan",
+        "name": "Field notes | Andrew Hogan",
         "description": "Build logs from the threat intelligence platform, detection lab, and security tooling I run in production.",
         "inLanguage": "en-US",
         "author": {"@id": f"{SITE}/#person"},
@@ -246,8 +269,8 @@ def render_index(posts: list[dict], covers: dict) -> str:
         </a>""")
     return (
         blog_schema_tag
-        + HEAD.format(title="Writing — Build Logs on Threat Intelligence and Detection | Andrew Hogan",
-                    og_title="Writing — Andrew Hogan",
+        + HEAD.format(title="Writing: Build Logs on Threat Intelligence and Detection | Andrew Hogan",
+                    og_title="Writing | Andrew Hogan",
                     og_type="website",
                     desc="Build logs from the threat intelligence platform, detection lab, and security tooling Andrew Hogan runs in production. Ingestion, scoring, enrichment, and asset matching.",
                     canonical=f"{SITE}/blog/",
