@@ -340,7 +340,17 @@ body {
 .about-more { margin-top: 22px; }
 /* No frame, no card: a plain portrait sits better on a warm page than a
    white box does. */
-.about-photo img { width: 100%; display: block; border-radius: var(--radius); }
+/* height:auto is required once the img carries width/height attributes:
+   without it the 800 attribute wins over the intrinsic ratio and the
+   portrait renders 300x800 instead of 300x400. */
+.about-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+}
 
 .inline-link {
   color: var(--accent-text);
