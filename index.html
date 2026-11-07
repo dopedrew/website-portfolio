@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andrew Hogan — Security Engineer, Threat Intelligence &amp; Detection</title>
+  <title>Andrew Hogan | Security Engineer, Threat Intelligence &amp; Detection</title>
   <meta name="description" content="Andrew Hogan is a security engineer and U.S. Army veteran with a TS/SCI CI Polygraph clearance. He builds threat intelligence tooling, detection labs, and native apps, and writes about running them in production." />
   <link rel="canonical" href="https://www.andrew-hogan.com/" />
 
@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://www.andrew-hogan.com/" />
-  <meta property="og:title" content="Andrew Hogan — Security Engineer, Threat Intelligence &amp; Detection" />
+  <meta property="og:title" content="Andrew Hogan | Security Engineer, Threat Intelligence &amp; Detection" />
   <meta property="og:description" content="Security engineer and U.S. Army veteran. I build threat intelligence tooling, detection labs, and native apps, then write about running them in production." />
   <meta property="og:image" content="https://www.andrew-hogan.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -23,7 +23,7 @@
   <meta name="author" content="Andrew Hogan" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.andrew-hogan.com/og-image.png" />
-  <meta name="twitter:title" content="Andrew Hogan — Security Engineer" />
+  <meta name="twitter:title" content="Andrew Hogan | Security Engineer" />
   <meta name="twitter:description" content="Security engineer and U.S. Army veteran. Threat intelligence, detection engineering, and the tools I build to do both." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -247,7 +247,8 @@
           <p class="about-more"><a href="/background.html" class="inline-link">Full background, skills, and credentials &rarr;</a></p>
         </div>
         <figure class="about-photo">
-          <img src="/images/andrew-hogan.jpg" alt="Andrew Hogan, security engineer and U.S. Army veteran" />
+          <img src="/images/andrew-hogan.jpg" alt="Andrew Hogan, security engineer and U.S. Army veteran"
+               width="600" height="800" decoding="async" />
         </figure>
       </div>
     </div>
@@ -321,6 +322,15 @@
         t.setAttribute('aria-expanded', open);
         t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
+      });
       n.addEventListener('click', function (e) {
         if (e.target.tagName === 'A') {
           n.classList.remove('open');
@@ -329,15 +339,54 @@
         }
       });
     })();
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-    });
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    // Scroll work is coalesced into an animation frame and the listener is
+    // passive, so it never blocks and never fires faster than the display.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
+
+    // In-page jumps: honour prefers-reduced-motion (a CSS media query cannot
+    // override scrollIntoView), and keep the URL in step so sections can be
+    // linked, shared, and reached with the back button.
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href');
+          if (id === '#' || id.length < 2) return;
+          var target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth' });
+          if (history.pushState) history.pushState(null, '', id); else location.hash = id;
+        });
       });
-    });
+    })();
+
+    // Mark the section in view so the nav can answer "where am I".
+    (function () {
+      var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var a = byId[en.target.id];
+          if (a && en.isIntersecting) {
+            links.forEach(function (l) { l.removeAttribute('aria-current'); });
+            a.setAttribute('aria-current', 'true');
+          }
+        });
+      }, { rootMargin: '-62px 0px -65% 0px' });
+      Object.keys(byId).forEach(function (id) {
+        var s = document.getElementById(id); if (s) io.observe(s);
+      });
+    })();
   </script>
 </body>
 </html>

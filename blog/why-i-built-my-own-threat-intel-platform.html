@@ -14,7 +14,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/why-i-built-my-own-threat-intel-platform.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>Why I Built My Own Threat Intel Platform Instead of Paying for One — Andrew Hogan</title>
+  <title>Why I Built My Own Threat Intel Platform Instead of Paying for One | Andrew Hogan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
@@ -36,6 +36,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Why I Built My Own Threat Intel Platform Instead of Paying for One", "description": "Every commercial threat intel feed I have used shares the same flaw: it tells you a CVE exists, not whether it matters to you. You get a CVSS score, a vendor advisory, maybe an EPSS number if you pay\u2026", "datePublished": "2026-11-03", "dateModified": "2026-11-03", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.andrew-hogan.com/blog/why-i-built-my-own-threat-intel-platform.html"}, "inLanguage": "en-US", "image": "https://www.andrew-hogan.com/images/blog/why-i-built-my-own-threat-intel-platform.png", "isPartOf": {"@type": "CreativeWorkSeries", "name": "Building a CTI Platform From Scratch (1 of 10)"}}</script>
   <article class="section post-page">
     <div class="container narrow">
@@ -56,6 +58,16 @@
   </article>
 
   <script>
+    // Blog pages share the fixed navbar, so they need the same scrolled
+    // material the home and background pages use.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
     (function () {
       var t = document.querySelector('.nav-toggle'),
           n = document.getElementById('nav-links');
@@ -64,6 +76,15 @@
         var open = n.classList.toggle('open');
         t.setAttribute('aria-expanded', open);
         t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
       });
       n.addEventListener('click', function (e) {
         if (e.target.tagName === 'A') {
@@ -74,6 +95,8 @@
       });
     })();
   </script>
+
+  </main>
 
   <footer class="footer">
     <div class="container footer-inner">

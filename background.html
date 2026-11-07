@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Background — Andrew Hogan | Security Engineer, TS/SCI CI Poly</title>
+  <title>Background | Andrew Hogan | Security Engineer, TS/SCI CI Poly</title>
   <meta name="description" content="Andrew Hogan's full professional background: ten years across federal, defense, and commercial security operations, plus technical skills and 14 industry certifications including CISSP." />
   <link rel="canonical" href="https://www.andrew-hogan.com/background.html" />
 
@@ -14,7 +14,7 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.andrew-hogan.com/background.html" />
-  <meta property="og:title" content="Background — Andrew Hogan" />
+  <meta property="og:title" content="Background | Andrew Hogan" />
   <meta property="og:description" content="Ten years across federal, defense, and commercial security operations, plus skills and certifications." />
   <meta property="og:image" content="https://www.andrew-hogan.com/og-image.png" />
   <meta name="author" content="Andrew Hogan" />
@@ -159,7 +159,7 @@
       <h2 class="section-title"><span class="section-num">01</span> Career</h2>
       <div class="roles">
         <div class="role fade-in">
-          <div class="role-when">Apr 2025 — Present<span class="tl-badge current">Current</span></div>
+          <div class="role-when">Apr 2025 to Present<span class="tl-badge current">Current</span></div>
           <div class="role-what">
             <div class="role-title">Security Operations Administrator</div>
             <div class="role-company">Peraton</div>
@@ -168,7 +168,7 @@
           </div>
         </div>
         <div class="role fade-in">
-          <div class="role-when">Feb 2025 — Jul 2025</div>
+          <div class="role-when">Feb 2025 to Jul 2025</div>
           <div class="role-what">
             <div class="role-title">Information Security Analyst</div>
             <div class="role-company">BayForce</div>
@@ -177,37 +177,37 @@
           </div>
         </div>
         <div class="role fade-in">
-          <div class="role-when">May 2024 — Sep 2024</div>
+          <div class="role-when">May 2024 to Sep 2024</div>
           <div class="role-what">
             <div class="role-title">Security Operations Center Analyst</div>
-            <div class="role-company">Augusta University — Augusta, GA</div>
+            <div class="role-company">Augusta University, Augusta, GA</div>
             <p class="role-line">Monitored and investigated alerts using Microsoft Sentinel, Defender XDR, and Cisco Secure Endpoint, reducing average incident response time by 20%</p>
             <div class="role-tags"><span>Microsoft Sentinel</span><span>Defender XDR</span><span>KQL</span></div>
           </div>
         </div>
         <div class="role fade-in">
-          <div class="role-when">Dec 2021 — Sep 2024<span class="tl-badge ">U.S. Army</span></div>
+          <div class="role-when">Dec 2021 to Sep 2024<span class="tl-badge ">U.S. Army</span></div>
           <div class="role-what">
             <div class="role-title">Cyber Operations Specialist</div>
-            <div class="role-company">Army Cyber Command — Fort Eisenhower, GA</div>
+            <div class="role-company">Army Cyber Command, Fort Eisenhower, GA</div>
             <p class="role-line">Conducted proactive threat hunting using Microsoft Defender XDR with digital forensics and malware analysis, increasing early threat detection by 30%</p>
             <div class="role-tags"><span>Defender XDR</span><span>Microsoft Sentinel</span><span>Threat Hunting</span></div>
           </div>
         </div>
         <div class="role fade-in">
-          <div class="role-when">Dec 2019 — Dec 2021<span class="tl-badge ">U.S. Army</span></div>
+          <div class="role-when">Dec 2019 to Dec 2021<span class="tl-badge ">U.S. Army</span></div>
           <div class="role-what">
             <div class="role-title">Senior Information Technology Specialist</div>
-            <div class="role-company">US Central Command — Camp Arifjan, Kuwait</div>
+            <div class="role-company">US Central Command, Camp Arifjan, Kuwait</div>
             <p class="role-line">Established and led an OPSEC program to address compliance gaps, achieving 100% pass rate on all operations security inspections</p>
             <div class="role-tags"><span>Splunk</span><span>Tenable</span><span>OPSEC</span></div>
           </div>
         </div>
         <div class="role fade-in">
-          <div class="role-when">Nov 2016 — Dec 2019<span class="tl-badge ">U.S. Army</span></div>
+          <div class="role-when">Nov 2016 to Dec 2019<span class="tl-badge ">U.S. Army</span></div>
           <div class="role-what">
             <div class="role-title">Helpdesk Manager</div>
-            <div class="role-company">Army NETCOM — Fort Lewis, WA</div>
+            <div class="role-company">Army NETCOM, Fort Lewis, WA</div>
             <p class="role-line">Led secure IT support operations for 1,000+ users, enforcing security protocols, access controls, and data protection measures</p>
             <div class="role-tags"><span>IT Operations</span><span>Security Awareness</span><span>Windows</span></div>
           </div>
@@ -425,6 +425,15 @@
         t.setAttribute('aria-expanded', open);
         t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
+      });
       n.addEventListener('click', function (e) {
         if (e.target.tagName === 'A') {
           n.classList.remove('open');
@@ -433,9 +442,15 @@
         }
       });
     })();
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-    });
+    // Coalesced into an animation frame; passive so it never blocks scrolling.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
   </script>
 </body>
 </html>

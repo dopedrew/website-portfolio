@@ -1,4 +1,4 @@
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "@id": "https://www.andrew-hogan.com/blog/#blog", "url": "https://www.andrew-hogan.com/blog/", "name": "Field notes \u2014 Andrew Hogan", "description": "Build logs from the threat intelligence platform, detection lab, and security tooling I run in production.", "inLanguage": "en-US", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "blogPost": [{"@type": "BlogPosting", "headline": "Why I Built My Own Threat Intel Platform Instead of Paying for One", "url": "https://www.andrew-hogan.com/blog/why-i-built-my-own-threat-intel-platform.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Ingesting 24 Feeds Without Drowning in Duplicate Data", "url": "https://www.andrew-hogan.com/blog/ingesting-24-feeds-without-duplicate-data.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Scoring 194,000 Vulnerabilities by What Actually Matters", "url": "https://www.andrew-hogan.com/blog/scoring-194000-vulnerabilities.html", "datePublished": "2026-11-03"}]}</script><!DOCTYPE html>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "@id": "https://www.andrew-hogan.com/blog/#blog", "url": "https://www.andrew-hogan.com/blog/", "name": "Field notes | Andrew Hogan", "description": "Build logs from the threat intelligence platform, detection lab, and security tooling I run in production.", "inLanguage": "en-US", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "blogPost": [{"@type": "BlogPosting", "headline": "Why I Built My Own Threat Intel Platform Instead of Paying for One", "url": "https://www.andrew-hogan.com/blog/why-i-built-my-own-threat-intel-platform.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Ingesting 24 Feeds Without Drowning in Duplicate Data", "url": "https://www.andrew-hogan.com/blog/ingesting-24-feeds-without-duplicate-data.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Scoring 194,000 Vulnerabilities by What Actually Matters", "url": "https://www.andrew-hogan.com/blog/scoring-194000-vulnerabilities.html", "datePublished": "2026-11-03"}]}</script><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -9,12 +9,12 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta name="theme-color" content="#f6f3ee" />
-  <meta property="og:title" content="Writing — Andrew Hogan" />
+  <meta property="og:title" content="Writing | Andrew Hogan" />
   <meta property="og:description" content="Build logs from the threat intelligence platform, detection lab, and security tooling Andrew Hogan runs in production. Ingestion, scoring, enrichment, and asset matching." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://www.andrew-hogan.com/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>Writing — Build Logs on Threat Intelligence and Detection | Andrew Hogan</title>
+  <title>Writing: Build Logs on Threat Intelligence and Detection | Andrew Hogan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
@@ -36,6 +36,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main">
 
   <section class="section post-index">
     <div class="container">
@@ -73,6 +75,16 @@
   </section>
 
   <script>
+    // Blog pages share the fixed navbar, so they need the same scrolled
+    // material the home and background pages use.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
     (function () {
       var t = document.querySelector('.nav-toggle'),
           n = document.getElementById('nav-links');
@@ -81,6 +93,15 @@
         var open = n.classList.toggle('open');
         t.setAttribute('aria-expanded', open);
         t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
       });
       n.addEventListener('click', function (e) {
         if (e.target.tagName === 'A') {
@@ -91,6 +112,8 @@
       });
     })();
   </script>
+
+  </main>
 
   <footer class="footer">
     <div class="container footer-inner">
