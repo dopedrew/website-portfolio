@@ -336,6 +336,12 @@ body {
   gap: 56px;
   align-items: start;
 }
+
+/* The portrait is shorter than the prose column, so top-aligning it left a
+   long gap underneath. Centre it against the text instead; the text itself
+   stays top-aligned. Only applies while the two sit side by side. */
+.about-photo { align-self: center; }
+
 .about-text p { color: var(--muted); line-height: 1.78; margin-bottom: 16px; max-width: 62ch; }
 .about-more { margin-top: 22px; }
 /* No frame, no card: a plain portrait sits better on a warm page than a
