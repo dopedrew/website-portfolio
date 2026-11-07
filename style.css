@@ -131,7 +131,15 @@ body {
   max-width: 62ch;
   margin-bottom: 30px;
 }
+/* Each credential wraps as a unit, so a line can never begin with a
+   dangling separator ('· CISSP' was orphaning onto its own line). */
 .hero-meta { text-wrap: pretty; }
+/* Above the phone breakpoint each credential wraps as a unit, so a line can
+   never start with a dangling separator. Below it the first segment alone is
+   wider than the viewport, so it must be allowed to break. */
+@media (min-width: 641px) {
+  .hero-meta span { white-space: nowrap; }
+}
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px; }
 .hero-meta {
   font-family: 'JetBrains Mono', monospace;
@@ -139,7 +147,10 @@ body {
   color: var(--muted);
   padding-top: 20px;
   border-top: 1px solid var(--border);
-  max-width: 62ch;
+  /* 62ch is a reading measure for prose; this is a single mono credential
+     strip of ~77 characters, so the cap was forcing "CISSP" onto its own
+     line at every width. Sized to the content instead. */
+  max-width: 80ch;
 }
 
 .btn-primary {
