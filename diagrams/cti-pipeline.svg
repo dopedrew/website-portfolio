@@ -1,0 +1,123 @@
+<svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cti-pipeline-title cti-pipeline-desc">
+        <title id="cti-pipeline-title">CTI platform ingest and scoring pipeline</title>
+        <desc id="cti-pipeline-desc">Twenty-four intel feeds are normalised into one Postgres store, enriched with EPSS, exploit availability and velocity scores, then matched against owned assets and SBOM inventory; only matched findings become priority alerts, while the full set stays queryable in the portal.</desc>
+        <defs>
+          <marker id="cti-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#685e54"/></marker>
+          <marker id="cti-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7a592b"/></marker>
+          <marker id="cti-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3d5a80"/></marker>
+        </defs>
+
+        <rect width="100%" height="100%" fill="#f6f3ee"/>
+
+        <!-- ZONE: sources (drawn before arrows and nodes) -->
+        <rect x="40" y="88" width="176" height="280" rx="8" fill="rgba(29,26,21,0.02)" stroke="rgba(29,26,21,0.10)" stroke-width="0.8"/>
+        <rect x="76" y="92" width="104" height="12" rx="2" fill="#f6f3ee"/>
+        <text x="128" y="101" fill="#706459" font-size="7" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.14em">24 LIVE FEEDS</text>
+
+        <!-- ARROWS (before boxes) -->
+        <!-- sources fan in -->
+        <path d="M 208,148 H 236 Q 244,148 244,156 V 206 Q 244,214 252,214 H 280" fill="none" stroke="#685e54" stroke-width="1.2" marker-end="url(#cti-arrow)"/>
+        <line x1="208" y1="228" x2="280" y2="228" stroke="#685e54" stroke-width="1.2" marker-end="url(#cti-arrow)"/>
+        <path d="M 208,308 H 236 Q 244,308 244,300 V 250 Q 244,242 252,242 H 280" fill="none" stroke="#685e54" stroke-width="1.2" marker-end="url(#cti-arrow)"/>
+        <!-- normalize -> store -->
+        <line x1="424" y1="228" x2="496" y2="228" stroke="#685e54" stroke-width="1.2" marker-end="url(#cti-arrow)"/>
+        <!-- store <-> enrich -->
+        <line x1="532" y1="200" x2="532" y2="152" stroke="#685e54" stroke-width="1.2" marker-end="url(#cti-arrow)"/>
+        <line x1="580" y1="152" x2="580" y2="200" stroke="#685e54" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#cti-arrow)"/>
+        <!-- store -> asset match -->
+        <line x1="648" y1="228" x2="720" y2="228" stroke="#685e54" stroke-width="1.2" marker-end="url(#cti-arrow)"/>
+        <!-- asset match -> alerts (focal path) -->
+        <line x1="816" y1="256" x2="816" y2="400" stroke="#7a592b" stroke-width="1.6" marker-end="url(#cti-arrow-accent)"/>
+        <!-- store -> portal -->
+        <line x1="572" y1="256" x2="572" y2="400" stroke="#685e54" stroke-width="1.2" marker-end="url(#cti-arrow)"/>
+
+        <!-- ARROW LABELS -->
+        <rect x="442" y="208" width="36" height="12" rx="2" fill="#f6f3ee"/>
+        <text x="460" y="217" fill="#706459" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">UPSERT</text>
+
+        <rect x="482" y="170" width="36" height="12" rx="2" fill="#f6f3ee"/>
+        <text x="500" y="179" fill="#706459" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">READ</text>
+
+        <rect x="590" y="170" width="44" height="12" rx="2" fill="#f6f3ee"/>
+        <text x="612" y="179" fill="#706459" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">SCORES</text>
+
+        <rect x="656" y="208" width="56" height="12" rx="2" fill="#f6f3ee"/>
+        <text x="684" y="217" fill="#706459" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">CANDIDATES</text>
+
+        <rect x="826" y="322" width="48" height="12" rx="2" fill="#f6f3ee"/>
+        <text x="850" y="331" fill="#7a592b" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">MATCHED</text>
+
+        <rect x="582" y="322" width="44" height="12" rx="2" fill="#f6f3ee"/>
+        <text x="604" y="331" fill="#706459" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle" letter-spacing="0.06em">SERVES</text>
+
+        <!-- NODES -->
+        <!-- sources: input treatment -->
+        <rect x="48" y="120" width="160" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="48" y="120" width="160" height="56" rx="6" fill="rgba(104,94,84,0.10)" stroke="#706459" stroke-width="1"/>
+        <text x="128" y="146" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Vulnerability feeds</text>
+        <text x="128" y="162" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">cisa kev · nvd · vulncheck</text>
+
+        <rect x="48" y="200" width="160" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="48" y="200" width="160" height="56" rx="6" fill="rgba(104,94,84,0.10)" stroke="#706459" stroke-width="1"/>
+        <text x="128" y="226" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">IOC feeds</text>
+        <text x="128" y="242" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">threatfox · urlhaus · sslbl</text>
+
+        <rect x="48" y="280" width="160" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="48" y="280" width="160" height="56" rx="6" fill="rgba(104,94,84,0.10)" stroke="#706459" stroke-width="1"/>
+        <text x="128" y="306" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Context feeds</text>
+        <text x="128" y="322" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">epss · cwe · sigma · att&amp;ck</text>
+
+        <!-- normalize: backend -->
+        <rect x="280" y="200" width="144" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="280" y="200" width="144" height="56" rx="6" fill="#ffffff" stroke="#1d1a15" stroke-width="1"/>
+        <text x="352" y="226" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Normalise + dedup</text>
+        <text x="352" y="242" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">one row per cve</text>
+
+        <!-- enrich: backend -->
+        <rect x="496" y="96" width="152" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="496" y="96" width="152" height="56" rx="6" fill="#ffffff" stroke="#1d1a15" stroke-width="1"/>
+        <text x="572" y="122" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Enrich + score</text>
+        <text x="572" y="138" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">epss · exploit · velocity</text>
+
+        <!-- postgres: store -->
+        <rect x="496" y="200" width="152" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="496" y="200" width="152" height="56" rx="6" fill="rgba(29,26,21,0.05)" stroke="#685e54" stroke-width="1"/>
+        <text x="572" y="226" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Postgres 16</text>
+        <text x="572" y="242" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">vulns · iocs · actors</text>
+
+        <!-- asset match: FOCAL -->
+        <rect x="720" y="200" width="192" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="720" y="200" width="192" height="56" rx="6" fill="rgba(122,89,43,0.08)" stroke="#7a592b" stroke-width="1.4"/>
+        <text x="816" y="226" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Asset + SBOM match</text>
+        <text x="816" y="242" fill="#7a592b" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">asset_matcher.py</text>
+
+        <!-- outputs: external -->
+        <rect x="496" y="400" width="152" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="496" y="400" width="152" height="56" rx="6" fill="rgba(29,26,21,0.03)" stroke="rgba(29,26,21,0.30)" stroke-width="1"/>
+        <text x="572" y="426" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">CTI portal</text>
+        <text x="572" y="442" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">cti.c3-security.com</text>
+
+        <rect x="720" y="400" width="192" height="56" rx="6" fill="#f6f3ee"/>
+        <rect x="720" y="400" width="192" height="56" rx="6" fill="rgba(29,26,21,0.03)" stroke="rgba(29,26,21,0.30)" stroke-width="1"/>
+        <text x="816" y="426" fill="#1d1a15" font-size="12" font-weight="600" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Priority alerts</text>
+        <text x="816" y="442" fill="#685e54" font-size="9" font-family="'JetBrains Mono', ui-monospace, monospace" text-anchor="middle">discord · weekly digest</text>
+
+        <!-- LEGEND -->
+        <line x1="48" y1="512" x2="912" y2="512" stroke="rgba(29,26,21,0.10)" stroke-width="0.8"/>
+        <text x="48" y="532" fill="#685e54" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" letter-spacing="0.14em">LEGEND</text>
+
+        <rect x="152" y="524" width="16" height="10" rx="2" fill="rgba(104,94,84,0.10)" stroke="#706459" stroke-width="1"/>
+        <text x="176" y="532" fill="#685e54" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" letter-spacing="0.06em">INTEL FEED</text>
+
+        <rect x="304" y="524" width="16" height="10" rx="2" fill="#ffffff" stroke="#1d1a15" stroke-width="1"/>
+        <text x="328" y="532" fill="#685e54" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" letter-spacing="0.06em">PIPELINE JOB</text>
+
+        <rect x="472" y="524" width="16" height="10" rx="2" fill="rgba(29,26,21,0.05)" stroke="#685e54" stroke-width="1"/>
+        <text x="496" y="532" fill="#685e54" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" letter-spacing="0.06em">STORE</text>
+
+        <rect x="592" y="524" width="16" height="10" rx="2" fill="rgba(122,89,43,0.08)" stroke="#7a592b" stroke-width="1.4"/>
+        <text x="616" y="532" fill="#685e54" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" letter-spacing="0.06em">FILTERS TO WHAT I RUN</text>
+
+        <rect x="824" y="524" width="16" height="10" rx="2" fill="rgba(29,26,21,0.03)" stroke="rgba(29,26,21,0.30)" stroke-width="1"/>
+        <text x="848" y="532" fill="#685e54" font-size="8" font-family="'JetBrains Mono', ui-monospace, monospace" letter-spacing="0.06em">DELIVERED</text>
+      </svg>

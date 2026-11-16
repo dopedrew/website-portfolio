@@ -32,6 +32,27 @@ OUT = ROOT / "blog"
 DATES = ROOT / "blog" / "dates.json"
 IMG_OUT = ROOT / "images" / "blog"
 
+# Architecture figures, keyed by source stem. The SVG is inlined rather than
+# referenced with <img>: an SVG loaded through <img> cannot reach the page's
+# webfonts, so every label in it would fall back to a system face.
+FIGURES = {
+    "01-why-i-built-my-own-threat-intel-platform": {
+        "svg": "diagrams/cti-pipeline.svg",
+        "after": 2,          # index of the paragraph it follows
+        "caption": "Twenty-four feeds in, one question out. Only the accented "
+                   "path produces an alert; everything else stays queryable in "
+                   "the portal.",
+    },
+}
+
+
+def figure_html(spec: dict) -> str:
+    svg = (ROOT / spec["svg"]).read_text().strip()
+    return ('      <figure class="post-figure">\n'
+            '        <div class="diagram-scroll">\n' + svg + '\n        </div>\n'
+            f'        <figcaption>{html.escape(spec["caption"])}</figcaption>\n'
+            '      </figure>')
+
 HEAD = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,11 +215,14 @@ def render_post(post: dict, cover: str | None, prev_: dict | None, next_: dict |
     og_image = (f'<meta property="og:image" content="https://www.andrew-hogan.com{cover}" />'
                 if cover else "")
     body = []
+    fig = FIGURES.get(post["stem"])
     for i, p in enumerate(post["paras"]):
         if p.lower().startswith("next:") and next_:
             continue  # rendered as a proper next-post link instead
         cls = ' class="post-lede"' if i == 0 else ""
         body.append(f"      <p{cls}>{esc(p)}</p>")
+        if fig and i == fig["after"]:
+            body.append(figure_html(fig))
 
     nav = []
     if prev_:
