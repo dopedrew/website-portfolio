@@ -61,8 +61,8 @@ body {
   gap: 32px;
 }
 .nav-logo-link { text-decoration: none; }
-.nav-logo { font-size: 19px; font-weight: 800; letter-spacing: -.026em; color: var(--text); }
-.nav-links { display: flex; list-style: none; gap: 26px; margin-left: auto; }
+.nav-logo { font-size: 19px; font-weight: 600; letter-spacing: 0; color: var(--text); }
+.nav-links { display: flex; list-style: none; gap: 24px; margin-left: auto; }
 .nav-links a {
   color: var(--muted);
   text-decoration: none;
@@ -79,9 +79,9 @@ body {
   margin-left: auto;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  width: 42px;
-  height: 42px;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   background: none;
   border: 0;
@@ -89,7 +89,7 @@ body {
 }
 .nav-toggle span {
   display: block;
-  width: 22px;
+  width: 24px;
   height: 2px;
   margin: 0 auto;
   background: var(--text);
@@ -97,9 +97,9 @@ body {
   transition: transform .2s, opacity .2s;
 }
 /* Collapse the bars into an X while the panel is open. */
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 /* ── Hero ──────────────────────────────────────────────────────────────── */
 /* Left-aligned and sized to its content. A centred 100vh hero leaves a screen
@@ -121,7 +121,7 @@ body {
      text-size setting. -.5px at the 59px cap is -.0085em. */
   letter-spacing: -.0085em;
   line-height: 1.12;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
   max-width: 21ch;
 }
 .hero-lede {
@@ -129,7 +129,7 @@ body {
   line-height: 1.7;
   color: var(--muted);
   max-width: 62ch;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 /* Each credential wraps as a unit, so a line can never begin with a
    dangling separator ('· CISSP' was orphaning onto its own line). */
@@ -140,10 +140,10 @@ body {
 @media (min-width: 641px) {
   .hero-meta span { white-space: nowrap; }
 }
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
 .hero-meta {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--muted);
   padding-top: 20px;
   border-top: 1px solid var(--border);
@@ -154,7 +154,7 @@ body {
 }
 
 .btn-primary {
-  padding: 12px 26px;
+  padding: 12px 24px;
   background: var(--accent-fill);
   color: #fff;
   border-radius: var(--radius);
@@ -165,7 +165,7 @@ body {
 }
 .btn-primary:hover { background: #86632e; }
 .btn-ghost {
-  padding: 12px 22px;
+  padding: 12px 24px;
   background: transparent;
   border: 1px solid var(--rule);
   color: var(--text);
@@ -188,12 +188,12 @@ body {
   font-size: clamp(1.5rem, 2.6vw, 1.95rem);
   font-weight: 600;
   letter-spacing: -.0064em;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: var(--text);
 }
 .section-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .72rem;
+  font-size: .74rem;
   font-weight: 500;
   letter-spacing: .1em;
   color: var(--accent-text);
@@ -211,7 +211,7 @@ body {
 .section-lede {
   max-width: 60ch;
   margin-bottom: 44px;
-  font-size: 1.02rem;
+  font-size: 1.06rem;
   line-height: 1.7;
   color: var(--muted);
 }
@@ -225,12 +225,12 @@ body {
   display: grid;
   grid-template-columns: 140px minmax(0, 1fr);
   gap: 32px;
-  padding: 30px 0;
+  padding: 32px 0;
   border-top: 1px solid var(--rule);
 }
 .project:last-child { border-bottom: 1px solid var(--rule); }
 
-.project-rail { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.project-rail { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
 .project-idx {
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.5rem;
@@ -239,7 +239,7 @@ body {
 }
 .project-status {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .66rem;
+  font-size: .68rem;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -250,7 +250,7 @@ body {
   font-size: 1.45rem;
   font-weight: 600;
   letter-spacing: -.01em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .project--lead h3 { font-size: 1.75rem; }
 .project-body > p { color: var(--muted); line-height: 1.72; max-width: 62ch; }
@@ -260,16 +260,17 @@ body {
   flex-wrap: wrap;
   gap: 40px;
   list-style: none;
-  margin: 22px 0;
-  padding: 18px 0;
+  margin: 24px 0;
+  padding: 20px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 .project-metrics li { display: flex; flex-direction: column; gap: 2px; }
 .project-metrics strong {
   font-size: 1.65rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
   color: var(--text);
 }
 .project-metrics span {
@@ -284,12 +285,12 @@ body {
   font-family: 'JetBrains Mono', monospace;
   font-size: .74rem;
   color: var(--muted);
-  margin-top: 14px;
+  margin-top: 16px;
 }
 .project-link {
   display: inline-block;
   margin-top: 16px;
-  font-size: .9rem;
+  font-size: .94rem;
   font-weight: 600;
   color: var(--accent-text);
   text-decoration: none;
@@ -304,7 +305,7 @@ body {
 .posts a {
   display: grid;
   grid-template-columns: 140px minmax(0, 1fr);
-  gap: 32px;
+  gap: 0 32px;
   padding: 24px 0;
   text-decoration: none;
   transition: background .2s;
@@ -312,11 +313,12 @@ body {
 .posts a:hover { background: rgba(138,101,48,.04); }
 .post-idx {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .7rem;
+  font-size: .68rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent-text);
   padding-top: 4px;
+  grid-row: 1 / span 2;
 }
 .post-title {
   display: block;
@@ -324,10 +326,10 @@ body {
   font-weight: 600;
   line-height: 1.35;
   color: var(--text);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .post-dek { display: block; color: var(--muted); font-size: .94rem; line-height: 1.65; max-width: 62ch; }
-.posts-all { margin-top: 26px; }
+.posts-all { margin-top: 24px; }
 
 /* ── About ─────────────────────────────────────────────────────────────── */
 .about-grid {
@@ -343,7 +345,7 @@ body {
 .about-photo { align-self: center; }
 
 .about-text p { color: var(--muted); line-height: 1.78; margin-bottom: 16px; max-width: 62ch; }
-.about-more { margin-top: 22px; }
+.about-more { margin-top: 24px; }
 /* No frame, no card: a plain portrait sits better on a warm page than a
    white box does. */
 /* height:auto is required once the img carries width/height attributes:
@@ -366,27 +368,27 @@ body {
 .inline-link:hover { border-color: var(--accent); }
 
 /* ── Off the clock ─────────────────────────────────────────────────────── */
-.offclock { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 56px; }
+.offclock { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 56px; }
 .offclock dt {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 8px;
   color: var(--text);
 }
-.offclock dd { color: var(--muted); font-size: .96rem; line-height: 1.72; }
+.offclock dd { color: var(--muted); font-size: .94rem; line-height: 1.72; }
 
 /* ── Contact ───────────────────────────────────────────────────────────── */
-.contact-list { display: flex; flex-wrap: wrap; gap: 14px; list-style: none; }
+.contact-list { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; }
 .contact-list a {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   padding: 12px 20px;
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   text-decoration: none;
   color: var(--text);
-  font-size: .93rem;
+  font-size: .94rem;
   font-weight: 500;
   transition: border-color .2s, background .2s;
 }
@@ -394,7 +396,7 @@ body {
 .contact-list i { color: var(--accent-text); }
 
 /* ── Page head (interior pages) ────────────────────────────────────────── */
-.page-head { padding: 140px 0 10px; }
+.page-head { padding: 140px 0 8px; }
 .page-head h1 {
   font-size: clamp(2rem, 4.4vw, 2.9rem);
   font-weight: 600;
@@ -408,7 +410,7 @@ body {
   letter-spacing: .06em;
   color: var(--muted);
   text-decoration: none;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
 .post-back:hover { color: var(--accent-text); }
 
@@ -418,7 +420,7 @@ body {
   display: grid;
   grid-template-columns: 200px minmax(0, 1fr);
   gap: 32px;
-  padding: 26px 0;
+  padding: 24px 0;
   border-top: 1px solid var(--rule);
 }
 .role:last-child { border-bottom: 1px solid var(--rule); }
@@ -428,29 +430,29 @@ body {
   align-items: flex-start;
   gap: 8px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: .76rem;
+  font-size: .74rem;
   color: var(--muted);
-  padding-top: 3px;
+  padding-top: 4px;
 }
-.role-title { font-size: 1.06rem; font-weight: 700; }
-.role-company { color: var(--accent-text); font-size: .9rem; margin-top: 2px; }
-.role-line { color: var(--muted); line-height: 1.68; font-size: .93rem; margin: 10px 0 12px; max-width: 62ch; }
-.role-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.role-title { font-size: 1.06rem; font-weight: 600; }
+.role-company { color: var(--accent-text); font-size: .94rem; margin-top: 2px; }
+.role-line { color: var(--muted); line-height: 1.68; font-size: .94rem; margin: 8px 0 12px; max-width: 62ch; }
+.role-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .role-tags span {
-  font-size: .72rem;
+  font-size: .74rem;
   color: var(--muted);
   background: rgba(29,26,21,.05);
   border-radius: 4px;
-  padding: 3px 8px;
+  padding: 4px 8px;
 }
-.roles-more { display: inline-block; margin-top: 26px; }
+.roles-more { display: inline-block; margin-top: 24px; }
 
 /* Role badges: plain text on a thin border, not a colour-fill pill. */
 .tl-badge {
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   padding: 2px 8px;
-  border-radius: 3px;
+  border-radius: 4px;
   color: var(--muted);
   border: 1px solid var(--rule);
   text-transform: uppercase;
@@ -464,46 +466,46 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 20px 22px;
+  padding: 20px 24px;
   transition: border-color .2s;
 }
 .skill-card:hover { border-color: rgba(138,101,48,.3); }
 .skill-icon {
-  width: 34px; height: 34px;
-  border-radius: 5px;
+  width: 32px; height: 32px;
+  border-radius: 4px;
   background: rgba(138,101,48,.1);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-text);
-  font-size: .9rem;
+  font-size: .94rem;
   margin-bottom: 12px;
 }
-.skill-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-.tag-list { display: flex; flex-wrap: wrap; gap: 7px; }
+.skill-card h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag {
-  padding: 3px 8px;
+  padding: 4px 8px;
   background: rgba(29,26,21,.04);
   border: 1px solid var(--border);
   border-radius: 4px;
-  font-size: .73rem;
+  font-size: .74rem;
   color: var(--muted);
   font-weight: 500;
 }
 
 /* ── Certifications (background page) ──────────────────────────────────── */
-.cert-group { margin-bottom: 26px; }
+.cert-group { margin-bottom: 24px; }
 .cert-group-label {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 18px;
-  padding-bottom: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
 }
-.cert-row { display: flex; flex-wrap: wrap; gap: 14px; }
+.cert-row { display: flex; flex-wrap: wrap; gap: 16px; }
 .cert-card {
   display: flex;
   flex-direction: column;
@@ -512,7 +514,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px 12px 12px;
+  padding: 16px 12px 12px;
   text-decoration: none;
   width: 132px;
   transition: border-color .2s;
@@ -545,39 +547,39 @@ body {
 }
 .post-card:hover { border-color: rgba(138,101,48,.4); }
 .post-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
-.post-card-body { padding: 20px 22px 24px; }
+.post-card-body { padding: 20px 24px 24px; }
 .post-card-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: .68rem;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--accent-text);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .post-card h2 {
   font-size: 1.12rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.32;
-  letter-spacing: -.01em;
+  letter-spacing: 0;
   color: var(--text);
   margin-bottom: 8px;
 }
-.post-card p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+.post-card p { color: var(--muted); font-size: .94rem; line-height: 1.6; }
 
 .post-page { padding-top: 140px; }
 .post-kicker {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .7rem;
+  font-size: .68rem;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--accent-text);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 .post-date {
   font-family: 'JetBrains Mono', monospace;
   font-size: .74rem;
   color: var(--muted);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .post-h1 {
@@ -585,14 +587,14 @@ body {
   font-weight: 600;
   line-height: 1.18;
   letter-spacing: -.01em;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 .post-cover {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: var(--radius);
-  margin-bottom: 38px;
+  margin-bottom: 40px;
 }
 .post-body p { font-size: 1.06rem; line-height: 1.8; color: var(--muted); margin-bottom: 24px; }
 .post-body .post-lede { font-size: 1.18rem; line-height: 1.72; color: var(--text); }
@@ -607,7 +609,7 @@ body {
 }
 .post-nav-link {
   flex: 1 1 240px;
-  padding: 18px 20px;
+  padding: 20px 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -622,15 +624,15 @@ body {
 .post-nav-link span {
   display: block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: .66rem;
+  font-size: .68rem;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 /* ── Footer ────────────────────────────────────────────────────────────── */
-.footer { border-top: 1px solid var(--border); padding: 30px 28px; }
+.footer { border-top: 1px solid var(--border); padding: 32px 28px; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .footer p { color: var(--muted); font-size: 13px; }
 
@@ -640,9 +642,10 @@ body {
   .about-photo { max-width: 280px; }
   .offclock { grid-template-columns: 1fr; gap: 28px; }
   .project, .posts a, .role { grid-template-columns: 1fr; gap: 12px; }
-  .project-rail { flex-direction: row; align-items: center; gap: 14px; }
+  .post-idx { grid-row: auto; }
+  .project-rail { flex-direction: row; align-items: center; gap: 16px; }
   .role-when { flex-direction: row; align-items: center; gap: 12px; }
-  .project-metrics { gap: 26px; }
+  .project-metrics { gap: 24px; }
 }
 
 @media (max-width: 640px) {
@@ -658,7 +661,7 @@ body {
     flex-direction: column;
     gap: 0;
     margin: 0;
-    padding: 6px 28px 14px;
+    padding: 8px 28px 16px;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
     box-shadow: 0 10px 20px rgba(29, 26, 21, .06);
@@ -678,8 +681,8 @@ body {
   .nav-links > a:last-child { border-bottom: 0; }
   .hero { padding: 120px 0 64px; }
   .section { padding: 64px 0; }
-  .page-head { padding: 118px 0 6px; }
-  .cert-card { width: 110px; }
+  .page-head { padding: 120px 0 8px; }
+  .cert-card { width: 112px; }
   .footer-inner { flex-direction: column; }
 }
 
@@ -695,21 +698,20 @@ summary:focus-visible,
 [tabindex]:focus-visible {
   outline: 3px solid var(--accent-text);
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
-/* The navbar is fixed at 62px, so an in-page jump would otherwise land the
-   target underneath it. */
+/* The navbar measures 76px (16 + a 44px tap target + 16), not the 62px this
+   assumed, so every in-page jump was landing 14px underneath it. */
 :target,
 section[id],
 main[id] {
-  scroll-margin-top: calc(62px + 18px);
+  scroll-margin-top: calc(76px + 20px);
 }
 
 /* Instant acknowledgement on press, which hover cannot provide on a phone. */
 .btn:active,
 .nav-toggle:active,
-.work-item:active,
 .post-card:active {
   transform: scale(.97);
   transition: transform .1s ease-out;
@@ -718,18 +720,18 @@ main[id] {
 /* Minimum 44px touch targets. The arrow links were 19 to 23px tall. */
 .nav-toggle { min-width: 44px; min-height: 44px; }
 
-/* These were 19 to 23px tall. Padding grows the hit area to 44px without
-   changing the visual weight of the link itself. */
+/* These were 19 to 23px tall. min-height grows the hit area to 44px without
+   changing the visual weight of the link itself. Standalone links only: an
+   inline-flex box inside a sentence breaks the leading and detaches the
+   underline, and WCAG 2.5.8 exempts a link constrained by its line of text. */
 .project-link,
-.inline-link,
 .post-back,
 .work-link,
-.contact-list a {
+.contact-list a,
+.about-more .inline-link {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding-top: 11px;
-  padding-bottom: 11px;
 }
 
 /* The wordmark is the only route home on small screens. */
@@ -751,7 +753,7 @@ main[id] {
   content: '';
   position: absolute;
   left: 0; right: 0; top: 100%;
-  height: 14px;
+  height: 16px;
   pointer-events: none;
   background: linear-gradient(to bottom, rgba(246,243,238,.75), rgba(246,243,238,0));
 }
@@ -768,7 +770,6 @@ main[id] {
   }
   .btn:active,
   .nav-toggle:active,
-  .work-item:active,
   .post-card:active { transform: none; }
 }
 
