@@ -298,6 +298,40 @@ body {
 .project-link span { display: inline-block; transition: transform .2s; }
 .project-link:hover span { transform: translateX(4px); }
 
+/* ── Architecture figures ──────────────────────────────────────────────────
+   A diagram is drawn on a 960 canvas and must not be scaled below it: at
+   832px its 9px sublabels fall under the legible floor. So the row drops the
+   140px rail and becomes one full-width cell, and the SVG keeps a floor with
+   its own scroller rather than the page scrolling sideways. */
+.project--figure { display: block; }
+.diagram-scroll { width: 100%; overflow-x: auto; }
+.diagram-scroll svg { width: 100%; min-width: 960px; display: block; }
+
+.project--figure figcaption,
+.post-figure figcaption {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .74rem;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: 16px;
+  max-width: 76ch;
+}
+
+/* Inside a post the reading column is 720px, so the figure breaks out to the
+   page's own content width instead of scrolling at every desktop size. */
+.post-figure {
+  width: min(1004px, calc(100vw - 56px));
+  margin-left: 50%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  transform: translateX(-50%);
+}
+
+@media print {
+  .diagram-scroll { overflow-x: visible; }
+  .diagram-scroll svg { min-width: 0; }
+}
+
 /* ── Writing list ──────────────────────────────────────────────────────── */
 .posts { list-style: none; }
 .posts li { border-top: 1px solid var(--rule); }
