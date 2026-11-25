@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The platform now tracks 194,000 vulnerabilities, 183,000 of them scored against EPSS, matches 887 of them against a 19 asset inventory, and has sent 5,679 priority alerts that actually changed what I…" />
+  <link rel="canonical" href="https://www.andrew-hogan.com/blog/a-year-in-production-what-id-change.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <meta property="og:title" content="A Year Running This in Production: What I&#x27;d Do Differently" />
+  <meta property="og:description" content="The platform now tracks 194,000 vulnerabilities, 183,000 of them scored against EPSS, matches 887 of them against a 19 asset inventory, and has sent 5,679 priority alerts that actually changed what I…" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/a-year-in-production-what-id-change.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>A Year Running This in Production: What I&#x27;d Do Differently | Andrew Hogan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Writing</a>
+        <a href="/#about">About</a>
+        <a href="/background.html">Background</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "A Year Running This in Production: What I'd Do Differently", "description": "The platform now tracks 194,000 vulnerabilities, 183,000 of them scored against EPSS, matches 887 of them against a 19 asset inventory, and has sent 5,679 priority alerts that actually changed what I\u2026", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.andrew-hogan.com/blog/a-year-in-production-what-id-change.html"}, "inLanguage": "en-US", "image": "https://www.andrew-hogan.com/images/blog/a-year-in-production-what-id-change.png", "isPartOf": {"@type": "CreativeWorkSeries", "name": "Building a CTI Platform From Scratch (10 of 10)"}}</script>
+  <article class="section post-page">
+    <div class="container narrow">
+      <a class="post-back" href="/blog/">&larr; All writing</a>
+      <div class="post-kicker">Building a CTI Platform From Scratch (10 of 10)</div>
+      <p class="post-date"><time datetime="2026-11-25">2026-11-25</time></p>
+      <h1 class="post-h1">A Year Running This in Production: What I&#x27;d Do Differently</h1>
+      <img class="post-cover" src="/images/blog/a-year-in-production-what-id-change.png" alt="Cover illustration for A Year Running This in Production: What I&#x27;d Do Differently" />
+      <div class="post-body">
+      <p class="post-lede">The platform now tracks 194,000 vulnerabilities, 183,000 of them scored against EPSS, matches 887 of them against a 19 asset inventory, and has sent 5,679 priority alerts that actually changed what I looked at that day. None of that was true the week I started. All of it came from fixing things that broke, not from a design document that got everything right the first time.</p>
+      <p>The biggest mistake, looked at honestly: building the alerting and the asset matching before the data was clean. I spent real effort tuning an alert engine&#x27;s thresholds before I discovered that five different scripts were quietly fragmenting the same KEV data under five different source labels, which meant some of the thresholds I was tuning were reacting to a data quality problem, not a real signal. Clean the pipeline before you trust anything downstream of it. I knew that rule in the abstract and still violated it in practice, because the exciting part of a project is always the layer closest to the output, not the unglamorous ingestion code underneath it.</p>
+      <p>The second lesson: a monitoring system is only as honest as its own assumptions. I had a health checker flag a vulnerability from 1988 as my freshest NVD data, because it trusted the first result an API call returned instead of checking whether that result was actually representative. The bug was not in the monitoring logic&#x27;s intent. It was in an assumption nobody had questioned, that the first item in a response is the most recent one. Every automated system carries assumptions like that, made once under time pressure and never revisited until something forces the question.</p>
+      <p>The thing I would keep exactly as is: scoping the asset inventory small and treating 19 accurate assets as more valuable than 200 approximate ones. Everything downstream, the matching, the alerting, the trust I place in what the system tells me, depends on that inventory being something I believe without double checking. That discipline, protecting the integrity of the smallest, most load bearing piece of the system, is the one architectural decision from day one I have never regretted.</p>
+      <p>This series started as a build log and ended up being mostly about the gap between what a system is designed to do and what it actually does once real data and real time pressure get involved. That gap is where the job actually is, in security or anywhere else building something meant to be trusted.</p>
+      </div>
+      <div class="post-nav"><a class="post-nav-link" href="/blog/sbom-import-supply-chain-blind-spot.html"><span>Previous</span>SBOM Import and the Supply Chain Blind Spot</a></div>
+    </div>
+  </article>
+
+  <script>
+    // Blog pages share the fixed navbar, so they need the same scrolled
+    // material the home and background pages use.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
+    (function () {
+      var t = document.querySelector('.nav-toggle'),
+          n = document.getElementById('nav-links');
+      if (!t || !n) return;
+      t.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        t.setAttribute('aria-expanded', open);
+        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    })();
+  </script>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="nav-logo">AH<span class="accent">.</span></span>
+      <p>&copy; 2026 Andrew Hogan</p>
+    </div>
+  </footer>
+</body>
+</html>

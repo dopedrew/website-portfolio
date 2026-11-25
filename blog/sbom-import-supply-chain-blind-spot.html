@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Every vulnerability pipeline I had built up to this point assumed I already knew what software I was running. That assumption breaks down fast once you account for dependencies, the libraries your…" />
+  <link rel="canonical" href="https://www.andrew-hogan.com/blog/sbom-import-supply-chain-blind-spot.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <meta property="og:title" content="SBOM Import and the Supply Chain Blind Spot" />
+  <meta property="og:description" content="Every vulnerability pipeline I had built up to this point assumed I already knew what software I was running. That assumption breaks down fast once you account for dependencies, the libraries your…" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/sbom-import-supply-chain-blind-spot.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>SBOM Import and the Supply Chain Blind Spot | Andrew Hogan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Writing</a>
+        <a href="/#about">About</a>
+        <a href="/background.html">Background</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "SBOM Import and the Supply Chain Blind Spot", "description": "Every vulnerability pipeline I had built up to this point assumed I already knew what software I was running. That assumption breaks down fast once you account for dependencies, the libraries your\u2026", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.andrew-hogan.com/blog/sbom-import-supply-chain-blind-spot.html"}, "inLanguage": "en-US", "image": "https://www.andrew-hogan.com/images/blog/sbom-import-supply-chain-blind-spot.png", "isPartOf": {"@type": "CreativeWorkSeries", "name": "Building a CTI Platform From Scratch (9 of 10)"}}</script>
+  <article class="section post-page">
+    <div class="container narrow">
+      <a class="post-back" href="/blog/">&larr; All writing</a>
+      <div class="post-kicker">Building a CTI Platform From Scratch (9 of 10)</div>
+      <p class="post-date"><time datetime="2026-11-25">2026-11-25</time></p>
+      <h1 class="post-h1">SBOM Import and the Supply Chain Blind Spot</h1>
+      <img class="post-cover" src="/images/blog/sbom-import-supply-chain-blind-spot.png" alt="Cover illustration for SBOM Import and the Supply Chain Blind Spot" />
+      <div class="post-body">
+      <p class="post-lede">Every vulnerability pipeline I had built up to this point assumed I already knew what software I was running. That assumption breaks down fast once you account for dependencies, the libraries your application pulls in that nobody explicitly chose, that update silently, and that can carry a critical vulnerability into your environment without a single line of your own code changing.</p>
+      <p>The platform accepts CycloneDX formatted software bills of materials, the standard format for describing exactly what components, including transitive dependencies, make up a piece of software. Importing an SBOM turns a vague sense of &quot;we use this application&quot; into a precise list of every package and version inside it, which then feeds the same asset matching logic the rest of the platform already runs. A CVE affecting a logging library three dependencies deep gets caught the same way a CVE affecting the application itself does.</p>
+      <p>This is the part of vulnerability management that gets skipped most often, not because it is technically hard, but because it is tedious and the payoff is invisible until the one time it matters. Nobody gets credit for the supply chain compromise that did not happen because an SBOM import caught a vulnerable dependency before it shipped. You only hear about the ones that were not caught. That asymmetry is exactly why so many organizations treat SBOM tracking as a compliance checkbox rather than an operational practice, generate the document once for an audit and never look at it again.</p>
+      <p>Building the import pipeline taught me how much easier it is to generate an SBOM than to keep one current. A snapshot from six months ago tells you what was true six months ago. The value is almost entirely in treating it as a living input, re-ingested whenever a build changes, not a static artifact you produce once and file away. That is a process discipline problem as much as a technical one, and it is the piece of this platform I am least satisfied with so far, the ingestion works, the discipline to keep it current is still a work in progress.</p>
+      </div>
+      <div class="post-nav"><a class="post-nav-link" href="/blog/attack-map-from-honeypot-traffic.html"><span>Previous</span>Building an Attack Map From My Own Honeypot Traffic</a><a class="post-nav-link next" href="/blog/a-year-in-production-what-id-change.html"><span>Next</span>A Year Running This in Production: What I&#x27;d Do Differently</a></div>
+    </div>
+  </article>
+
+  <script>
+    // Blog pages share the fixed navbar, so they need the same scrolled
+    // material the home and background pages use.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
+    (function () {
+      var t = document.querySelector('.nav-toggle'),
+          n = document.getElementById('nav-links');
+      if (!t || !n) return;
+      t.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        t.setAttribute('aria-expanded', open);
+        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    })();
+  </script>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="nav-logo">AH<span class="accent">.</span></span>
+      <p>&copy; 2026 Andrew Hogan</p>
+    </div>
+  </footer>
+</body>
+</html>
