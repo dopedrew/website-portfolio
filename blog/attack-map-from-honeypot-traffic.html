@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="I built a world map that plots where honeypot traffic originates against where my own perimeter gets probed, an SVG rendering with no external mapping library, fed directly from a table of honeypot…" />
+  <link rel="canonical" href="https://www.andrew-hogan.com/blog/attack-map-from-honeypot-traffic.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <meta property="og:title" content="Building an Attack Map From My Own Honeypot Traffic" />
+  <meta property="og:description" content="I built a world map that plots where honeypot traffic originates against where my own perimeter gets probed, an SVG rendering with no external mapping library, fed directly from a table of honeypot…" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/attack-map-from-honeypot-traffic.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Building an Attack Map From My Own Honeypot Traffic | Andrew Hogan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Writing</a>
+        <a href="/#about">About</a>
+        <a href="/background.html">Background</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Building an Attack Map From My Own Honeypot Traffic", "description": "I built a world map that plots where honeypot traffic originates against where my own perimeter gets probed, an SVG rendering with no external mapping library, fed directly from a table of honeypot\u2026", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.andrew-hogan.com/blog/attack-map-from-honeypot-traffic.html"}, "inLanguage": "en-US", "image": "https://www.andrew-hogan.com/images/blog/attack-map-from-honeypot-traffic.png", "isPartOf": {"@type": "CreativeWorkSeries", "name": "Building a CTI Platform From Scratch (8 of 10)"}}</script>
+  <article class="section post-page">
+    <div class="container narrow">
+      <a class="post-back" href="/blog/">&larr; All writing</a>
+      <div class="post-kicker">Building a CTI Platform From Scratch (8 of 10)</div>
+      <p class="post-date"><time datetime="2026-11-25">2026-11-25</time></p>
+      <h1 class="post-h1">Building an Attack Map From My Own Honeypot Traffic</h1>
+      <img class="post-cover" src="/images/blog/attack-map-from-honeypot-traffic.png" alt="Cover illustration for Building an Attack Map From My Own Honeypot Traffic" />
+      <div class="post-body">
+      <p class="post-lede">I built a world map that plots where honeypot traffic originates against where my own perimeter gets probed, an SVG rendering with no external mapping library, fed directly from a table of honeypot hits and a table of real attack origins. It is a genuinely satisfying piece of engineering. It is also, right now, mostly empty, and the reason why taught me more than the map itself did.</p>
+      <p>The honeypot sits behind a Cloudflare WAF, because an unprotected honeypot on the open internet is a bad idea for reasons that have nothing to do with the research value of the data it collects. The problem is that the WAF does its job well. Most of the scanning and exploitation traffic that would otherwise hit the honeypot gets filtered before it ever arrives. The honeypot currently shows 97 recorded hits total, which is a small number for a system that has been running for months, and the gap is not a bug, it is my own defense working exactly as designed.</p>
+      <p>This is a more useful lesson than a rich dataset would have been. A system built to observe attacker behavior and a system built to block attacker behavior are in direct tension with each other, and you cannot optimize both at once without a deliberate tradeoff. Security researchers who run honeypots at scale either accept a higher baseline risk by running with lighter protection, or they build separate, carefully isolated infrastructure specifically for the collection that never touches anything they actually need to defend. I did neither. I bolted a honeypot onto infrastructure that is primarily meant to protect production systems, and the natural consequence is a honeypot that does not see much.</p>
+      <p>The map is still worth having, because the small number of real hits it does capture are worth visualizing well, and because the architecture is already there if I decide the research value justifies rearchitecting the exposure. But the honest version of this post is not &quot;look at my attack map.&quot; It is: I built a data collection system and then put my best defenses directly in front of it, and now I know exactly why that tradeoff exists instead of assuming it does not apply to me.</p>
+      </div>
+      <div class="post-nav"><a class="post-nav-link" href="/blog/3977-exploited-cves-government-feed-misses.html"><span>Previous</span>3,977 Exploited CVEs the Government Feed Misses</a><a class="post-nav-link next" href="/blog/sbom-import-supply-chain-blind-spot.html"><span>Next</span>SBOM Import and the Supply Chain Blind Spot</a></div>
+    </div>
+  </article>
+
+  <script>
+    // Blog pages share the fixed navbar, so they need the same scrolled
+    // material the home and background pages use.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
+    (function () {
+      var t = document.querySelector('.nav-toggle'),
+          n = document.getElementById('nav-links');
+      if (!t || !n) return;
+      t.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        t.setAttribute('aria-expanded', open);
+        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    })();
+  </script>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="nav-logo">AH<span class="accent">.</span></span>
+      <p>&copy; 2026 Andrew Hogan</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "@id": "https://www.andrew-hogan.com/blog/#blog", "url": "https://www.andrew-hogan.com/blog/", "name": "Field notes | Andrew Hogan", "description": "Build logs from the threat intelligence platform, detection lab, and security tooling I run in production.", "inLanguage": "en-US", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "blogPost": [{"@type": "BlogPosting", "headline": "Why I Built My Own Threat Intel Platform Instead of Paying for One", "url": "https://www.andrew-hogan.com/blog/why-i-built-my-own-threat-intel-platform.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Ingesting 24 Feeds Without Drowning in Duplicate Data", "url": "https://www.andrew-hogan.com/blog/ingesting-24-feeds-without-duplicate-data.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Scoring 194,000 Vulnerabilities by What Actually Matters", "url": "https://www.andrew-hogan.com/blog/scoring-194000-vulnerabilities.html", "datePublished": "2026-11-03"}]}</script><!DOCTYPE html>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "@id": "https://www.andrew-hogan.com/blog/#blog", "url": "https://www.andrew-hogan.com/blog/", "name": "Field notes | Andrew Hogan", "description": "Build logs from the threat intelligence platform, detection lab, and security tooling I run in production.", "inLanguage": "en-US", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "blogPost": [{"@type": "BlogPosting", "headline": "Why I Built My Own Threat Intel Platform Instead of Paying for One", "url": "https://www.andrew-hogan.com/blog/why-i-built-my-own-threat-intel-platform.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Ingesting 24 Feeds Without Drowning in Duplicate Data", "url": "https://www.andrew-hogan.com/blog/ingesting-24-feeds-without-duplicate-data.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Scoring 194,000 Vulnerabilities by What Actually Matters", "url": "https://www.andrew-hogan.com/blog/scoring-194000-vulnerabilities.html", "datePublished": "2026-11-03"}, {"@type": "BlogPosting", "headline": "Mapping CVEs to MITRE ATT&CK and CWE Automatically", "url": "https://www.andrew-hogan.com/blog/mapping-cves-to-attck-and-cwe.html", "datePublished": "2026-11-25"}, {"@type": "BlogPosting", "headline": "From \"a CVE Exists\" to \"This CVE Is on My Network\"", "url": "https://www.andrew-hogan.com/blog/from-cve-exists-to-on-my-network.html", "datePublished": "2026-11-25"}, {"@type": "BlogPosting", "headline": "Why Most Vulnerability Alerts Are Noise", "url": "https://www.andrew-hogan.com/blog/why-most-vulnerability-alerts-are-noise.html", "datePublished": "2026-11-25"}, {"@type": "BlogPosting", "headline": "3,977 Exploited CVEs the Government Feed Misses", "url": "https://www.andrew-hogan.com/blog/3977-exploited-cves-government-feed-misses.html", "datePublished": "2026-11-25"}, {"@type": "BlogPosting", "headline": "Building an Attack Map From My Own Honeypot Traffic", "url": "https://www.andrew-hogan.com/blog/attack-map-from-honeypot-traffic.html", "datePublished": "2026-11-25"}, {"@type": "BlogPosting", "headline": "SBOM Import and the Supply Chain Blind Spot", "url": "https://www.andrew-hogan.com/blog/sbom-import-supply-chain-blind-spot.html", "datePublished": "2026-11-25"}, {"@type": "BlogPosting", "headline": "A Year Running This in Production: What I'd Do Differently", "url": "https://www.andrew-hogan.com/blog/a-year-in-production-what-id-change.html", "datePublished": "2026-11-25"}]}</script><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -68,6 +68,62 @@
             <div class="post-card-kicker">Part 3 of 10</div>
             <h2>Scoring 194,000 Vulnerabilities by What Actually Matters</h2>
             <p>CVSS tells you how bad a vulnerability could be in theory. It does not tell you how likely anyone is to actually use it against you. Those are different questions, and conflating them is how security…</p>
+          </div>
+        </a>
+        <a class="post-card" href="/blog/mapping-cves-to-attck-and-cwe.html">
+          <img src="/images/blog/mapping-cves-to-attck-and-cwe.png" alt="Cover illustration for Mapping CVEs to MITRE ATT&amp;CK and CWE Automatically" />
+          <div class="post-card-body">
+            <div class="post-card-kicker">Part 4 of 10</div>
+            <h2>Mapping CVEs to MITRE ATT&amp;CK and CWE Automatically</h2>
+            <p>A CVE number is an index, not an explanation. It tells you that something was assigned an identifier, not what kind of flaw it is or how an attacker actually uses it. Two layers of enrichment turn…</p>
+          </div>
+        </a>
+        <a class="post-card" href="/blog/from-cve-exists-to-on-my-network.html">
+          <img src="/images/blog/from-cve-exists-to-on-my-network.png" alt="Cover illustration for From &quot;a CVE Exists&quot; to &quot;This CVE Is on My Network&quot;" />
+          <div class="post-card-body">
+            <div class="post-card-kicker">Part 5 of 10</div>
+            <h2>From &quot;a CVE Exists&quot; to &quot;This CVE Is on My Network&quot;</h2>
+            <p>The single biggest gap between a generic vulnerability feed and an actual vulnerability management program is asset context. Every feed on earth can tell you a CVE was published today. Almost none of…</p>
+          </div>
+        </a>
+        <a class="post-card" href="/blog/why-most-vulnerability-alerts-are-noise.html">
+          <img src="/images/blog/why-most-vulnerability-alerts-are-noise.png" alt="Cover illustration for Why Most Vulnerability Alerts Are Noise" />
+          <div class="post-card-body">
+            <div class="post-card-kicker">Part 6 of 10</div>
+            <h2>Why Most Vulnerability Alerts Are Noise</h2>
+            <p>The first version of the alert engine told me about everything. Every new CVE that matched an asset, every KEV catalog addition, every EPSS score crossing a threshold. Within a week I had stopped…</p>
+          </div>
+        </a>
+        <a class="post-card" href="/blog/3977-exploited-cves-government-feed-misses.html">
+          <img src="/images/blog/3977-exploited-cves-government-feed-misses.png" alt="Cover illustration for 3,977 Exploited CVEs the Government Feed Misses" />
+          <div class="post-card-body">
+            <div class="post-card-kicker">Part 7 of 10</div>
+            <h2>3,977 Exploited CVEs the Government Feed Misses</h2>
+            <p>CISA&#x27;s Known Exploited Vulnerabilities catalog is the closest thing the industry has to an authoritative list of what is actually being used in attacks, and most vulnerability management programs,…</p>
+          </div>
+        </a>
+        <a class="post-card" href="/blog/attack-map-from-honeypot-traffic.html">
+          <img src="/images/blog/attack-map-from-honeypot-traffic.png" alt="Cover illustration for Building an Attack Map From My Own Honeypot Traffic" />
+          <div class="post-card-body">
+            <div class="post-card-kicker">Part 8 of 10</div>
+            <h2>Building an Attack Map From My Own Honeypot Traffic</h2>
+            <p>I built a world map that plots where honeypot traffic originates against where my own perimeter gets probed, an SVG rendering with no external mapping library, fed directly from a table of honeypot…</p>
+          </div>
+        </a>
+        <a class="post-card" href="/blog/sbom-import-supply-chain-blind-spot.html">
+          <img src="/images/blog/sbom-import-supply-chain-blind-spot.png" alt="Cover illustration for SBOM Import and the Supply Chain Blind Spot" />
+          <div class="post-card-body">
+            <div class="post-card-kicker">Part 9 of 10</div>
+            <h2>SBOM Import and the Supply Chain Blind Spot</h2>
+            <p>Every vulnerability pipeline I had built up to this point assumed I already knew what software I was running. That assumption breaks down fast once you account for dependencies, the libraries your…</p>
+          </div>
+        </a>
+        <a class="post-card" href="/blog/a-year-in-production-what-id-change.html">
+          <img src="/images/blog/a-year-in-production-what-id-change.png" alt="Cover illustration for A Year Running This in Production: What I&#x27;d Do Differently" />
+          <div class="post-card-body">
+            <div class="post-card-kicker">Part 10 of 10</div>
+            <h2>A Year Running This in Production: What I&#x27;d Do Differently</h2>
+            <p>The platform now tracks 194,000 vulnerabilities, 183,000 of them scored against EPSS, matches 887 of them against a 19 asset inventory, and has sent 5,679 priority alerts that actually changed what I…</p>
           </div>
         </a>
       </div>

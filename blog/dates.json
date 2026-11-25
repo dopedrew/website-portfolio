@@ -1,5 +1,12 @@
 {
-  "why-i-built-my-own-threat-intel-platform": "2026-11-03",
+  "3977-exploited-cves-government-feed-misses": "2026-11-25",
+  "a-year-in-production-what-id-change": "2026-11-25",
+  "attack-map-from-honeypot-traffic": "2026-11-25",
+  "from-cve-exists-to-on-my-network": "2026-11-25",
   "ingesting-24-feeds-without-duplicate-data": "2026-11-03",
-  "scoring-194000-vulnerabilities": "2026-11-03"
+  "mapping-cves-to-attck-and-cwe": "2026-11-25",
+  "sbom-import-supply-chain-blind-spot": "2026-11-25",
+  "scoring-194000-vulnerabilities": "2026-11-03",
+  "why-i-built-my-own-threat-intel-platform": "2026-11-03",
+  "why-most-vulnerability-alerts-are-noise": "2026-11-25"
 }

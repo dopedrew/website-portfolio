@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A CVE number is an index, not an explanation. It tells you that something was assigned an identifier, not what kind of flaw it is or how an attacker actually uses it. Two layers of enrichment turn…" />
+  <link rel="canonical" href="https://www.andrew-hogan.com/blog/mapping-cves-to-attck-and-cwe.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <meta property="og:title" content="Mapping CVEs to MITRE ATT&amp;CK and CWE Automatically" />
+  <meta property="og:description" content="A CVE number is an index, not an explanation. It tells you that something was assigned an identifier, not what kind of flaw it is or how an attacker actually uses it. Two layers of enrichment turn…" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://www.andrew-hogan.com/images/blog/mapping-cves-to-attck-and-cwe.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Mapping CVEs to MITRE ATT&amp;CK and CWE Automatically | Andrew Hogan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo-link"><span class="nav-logo">AH<span class="accent">.</span></span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#work">Work</a>
+        <a href="/blog/">Writing</a>
+        <a href="/#about">About</a>
+        <a href="/background.html">Background</a>
+        <a href="/#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Mapping CVEs to MITRE ATT&CK and CWE Automatically", "description": "A CVE number is an index, not an explanation. It tells you that something was assigned an identifier, not what kind of flaw it is or how an attacker actually uses it. Two layers of enrichment turn\u2026", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "author": {"@id": "https://www.andrew-hogan.com/#person"}, "publisher": {"@id": "https://www.andrew-hogan.com/#person"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.andrew-hogan.com/blog/mapping-cves-to-attck-and-cwe.html"}, "inLanguage": "en-US", "image": "https://www.andrew-hogan.com/images/blog/mapping-cves-to-attck-and-cwe.png", "isPartOf": {"@type": "CreativeWorkSeries", "name": "Building a CTI Platform From Scratch (4 of 10)"}}</script>
+  <article class="section post-page">
+    <div class="container narrow">
+      <a class="post-back" href="/blog/">&larr; All writing</a>
+      <div class="post-kicker">Building a CTI Platform From Scratch (4 of 10)</div>
+      <p class="post-date"><time datetime="2026-11-25">2026-11-25</time></p>
+      <h1 class="post-h1">Mapping CVEs to MITRE ATT&amp;CK and CWE Automatically</h1>
+      <img class="post-cover" src="/images/blog/mapping-cves-to-attck-and-cwe.png" alt="Cover illustration for Mapping CVEs to MITRE ATT&amp;CK and CWE Automatically" />
+      <div class="post-body">
+      <p class="post-lede">A CVE number is an index, not an explanation. It tells you that something was assigned an identifier, not what kind of flaw it is or how an attacker actually uses it. Two layers of enrichment turn that identifier into something a defender can act on, CWE, which classifies the underlying weakness, and MITRE ATT&amp;CK, which classifies the technique an attacker would use to exploit it.</p>
+      <p>The platform carries 691 MITRE ATT&amp;CK techniques mapped against the vulnerabilities and threat actor data it tracks. CWE classification tells you what kind of bug this is, an out of bounds write, an improper authentication check, a path traversal. ATT&amp;CK tells you what an attacker does with it, initial access, privilege escalation, lateral movement. Knowing both means you can look at a new CVE and immediately place it in the kill chain instead of treating it as an isolated event.</p>
+      <p>This matters most when you are trying to build detections ahead of exploitation instead of after it. The platform also tracks 3,800 Sigma detection rules mapped against specific techniques, so when a new CVE comes in classified under a given ATT&amp;CK technique, I can immediately check whether existing detection coverage would catch exploitation of it, or whether this is a genuine gap. That is a very different posture than reading a CVE description and hoping your EDR vendor has you covered.</p>
+      <p>The honest limitation here is attribution. The platform distinguishes between two kinds of actor linkage, inferred associations built from keyword and technique overlap, which are useful for hypothesis generation but not proof, and a much smaller set of actual MITRE-cited attribution pairs, under 400 of them, where a named threat actor has been formally tied to a specific CVE by a credible source. Conflating the two is one of the most common mistakes in threat intel writeups. I keep them in separate tables on purpose, so I am never tempted to present an inference as a fact.</p>
+      <p>Enrichment is not optional if you want a platform that argues for itself. A raw CVE list is data. A CVE list with weakness class, attacker technique, and honest attribution confidence attached is the beginning of an actual threat model.</p>
+      </div>
+      <div class="post-nav"><a class="post-nav-link" href="/blog/scoring-194000-vulnerabilities.html"><span>Previous</span>Scoring 194,000 Vulnerabilities by What Actually Matters</a><a class="post-nav-link next" href="/blog/from-cve-exists-to-on-my-network.html"><span>Next</span>From &quot;a CVE Exists&quot; to &quot;This CVE Is on My Network&quot;</a></div>
+    </div>
+  </article>
+
+  <script>
+    // Blog pages share the fixed navbar, so they need the same scrolled
+    // material the home and background pages use.
+    (function () {
+      var bar = document.getElementById('navbar'), queued = false;
+      function sync() { queued = false; bar.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', function () {
+        if (!queued) { queued = true; requestAnimationFrame(sync); }
+      }, { passive: true });
+      sync();
+    })();
+    (function () {
+      var t = document.querySelector('.nav-toggle'),
+          n = document.getElementById('nav-links');
+      if (!t || !n) return;
+      t.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        t.setAttribute('aria-expanded', open);
+        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      // Escape dismisses the menu and returns focus to the trigger.
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && n.classList.contains('open')) {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+          t.focus();
+        }
+      });
+      n.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          n.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          t.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    })();
+  </script>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="nav-logo">AH<span class="accent">.</span></span>
+      <p>&copy; 2026 Andrew Hogan</p>
+    </div>
+  </footer>
+</body>
+</html>
